@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - StockWise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/light-theme.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <i class="fas fa-boxes me-2"></i>StockWise
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="../index.html">
+                    <i class="fas fa-home me-1"></i>Home
+                </a>
+                <a class="nav-link" href="register.html">
+                    <i class="fas fa-user-plus me-1"></i>Register
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-md-7">
+                    <!-- Login Card -->
+                    <div class="card shadow-lg border-0 rounded-lg">
+                        <div class="card-header bg-gradient-dark text-white text-center py-4">
+                            <h3 class="mb-0">
+                                <i class="fas fa-sign-in-alt me-2"></i>
+                                Login to StockWise
+                            </h3>
+                            <p class="mb-0 mt-2 text-light">Access your inventory management system</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <!-- Alert Container -->
+                            <div id="alertContainer"></div>
+                            
+                            <!-- Login Form -->
+                            <form id="loginForm" novalidate>
+                                <!-- Username Field -->
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">
+                                        <i class="fas fa-user me-1"></i>Username
+                                    </label>
+                                    <input 
+                                        type="text" 
+                                        class="form-control form-control-lg" 
+                                        id="username" 
+                                        name="username" 
+                                        placeholder="Enter your username"
+                                        required
+                                        autocomplete="username"
+                                    >
+                                    <div class="invalid-feedback">
+                                        Please enter your username.
+                                    </div>
+                                </div>
+
+                                <!-- Password Field -->
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">
+                                        <i class="fas fa-lock me-1"></i>Password
+                                    </label>
+                                    <div class="input-group">
+                                        <input 
+                                            type="password" 
+                                            class="form-control form-control-lg" 
+                                            id="password" 
+                                            name="password" 
+                                            placeholder="Enter your password"
+                                            required
+                                            autocomplete="current-password"
+                                        >
+                                        <button 
+                                            class="btn btn-outline-secondary" 
+                                            type="button" 
+                                            id="togglePassword"
+                                            title="Show/Hide Password"
+                                        >
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please enter your password.
+                                    </div>
+                                </div>
+
+                                <!-- Remember Me -->
+                                <div class="mb-3 form-check">
+                                    <input 
+                                        type="checkbox" 
+                                        class="form-check-input" 
+                                        id="rememberMe" 
+                                        name="rememberMe"
+                                    >
+                                    <label class="form-check-label" for="rememberMe">
+                                        Remember me
+                                    </label>
+                                </div>
+
+                                <!-- Login Button -->
+                                <div class="d-grid mb-3">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-sign-in-alt me-2"></i>
+                                        <span id="loginBtnText">Login</span>
+                                        <div class="spinner-border spinner-border-sm ms-2 d-none" id="loginSpinner"></div>
+                                    </button>
+                                </div>
+
+                                <!-- Demo Credentials -->
+                                <div class="alert alert-info">
+                                    <h6 class="alert-heading">
+                                        <i class="fas fa-info-circle me-1"></i>Demo Credentials
+                                    </h6>
+                                    <small>
+                                        <strong>Admin:</strong> admin / password123<br>
+                                        <strong>User:</strong> user / password123<br>
+                                        <strong>Staff:</strong> staff / password123
+                                    </small>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center py-3">
+                            <small class="text-muted">
+                                Don't have an account? 
+                                <a href="register.html" class="text-primary text-decoration-none">
+                                    Create one here
+                                </a>
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Quick Login Buttons -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title mb-3">Quick Login (Demo)</h6>
+                                    <div class="d-grid gap-2 d-md-block">
+                                        <button class="btn btn-outline-primary btn-sm quick-login" data-username="admin" data-password="password123">
+                                            <i class="fas fa-user-shield me-1"></i>Admin
+                                        </button>
+                                        <button class="btn btn-outline-success btn-sm quick-login" data-username="manager" data-password="password123">
+                                            <i class="fas fa-user-tie me-1"></i>Manager
+                                        </button>
+                                        <button class="btn btn-outline-info btn-sm quick-login" data-username="staff" data-password="password123">
+                                            <i class="fas fa-user me-1"></i>Staff
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-3 mt-5">
+        <div class="container text-center">
+            <small>&copy; 2026 StockWise. All rights reserved.</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- StockWise Database -->
+    <script src="../js/database.js"></script>
+    
+    <!-- Login Page JavaScript -->
+    <script src="../js\login-page.js"></script>
+</body>
+</html>

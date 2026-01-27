@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Management - StockWise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/light-theme.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <i class="fas fa-boxes me-2"></i>StockWise
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="goToDashboard()">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="products.html">
+                            <i class="fas fa-boxes me-1"></i>Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="suppliers.html">
+                            <i class="fas fa-truck me-1"></i>Suppliers
+                        </a>
+                    </li>
+                    <li class="nav-item" id="usersNavItem" style="display: none;">
+                        <a class="nav-link" href="users.html">
+                            <i class="fas fa-users me-1"></i>Users
+                        </a>
+                    </li>
+                    <li class="nav-item" id="reportsNavItem" style="display: none;">
+                        <a class="nav-link" href="reports.html">
+                            <i class="fas fa-chart-bar me-1"></i>Reports
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i><span id="currentUsername">User</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-user-cog me-2"></i>Profile
+                            </a></li>
+                            <li><a class="dropdown-item" href="settings.html">
+                                <i class="fas fa-cog me-2"></i>Settings
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid py-4">
+        <!-- Page Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2><i class="fas fa-boxes me-2"></i>Products Management</h2>
+                        <p class="text-muted mb-0">Manage your inventory products</p>
+                    </div>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" onclick="openAddProductModal()">
+                        <i class="fas fa-plus me-2"></i>Add Product
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Filters and Search -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0"><i class="fas fa-filter me-2"></i>Search & Filters</h6>
+                            <div>
+                                <button class="btn btn-sm btn-outline-success me-2" onclick="exportProducts()">
+                                    <i class="fas fa-download me-1"></i>Export CSV
+                                </button>
+                                <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#advancedFilters">
+                                    <i class="fas fa-cog me-1"></i>Advanced
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Search Products</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    <input type="text" class="form-control" id="searchInput" placeholder="Search by name, code, or description...">
+                                    <button class="btn btn-outline-secondary" type="button" onclick="clearSearch()">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Category</label>
+                                <select class="form-select" id="categoryFilter">
+                                    <option value="">All Categories</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Stock Status</label>
+                                <select class="form-select" id="stockFilter">
+                                    <option value="">All Stock Levels</option>
+                                    <option value="low">Low Stock</option>
+                                    <option value="medium">Medium Stock</option>
+                                    <option value="good">Good Stock</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Supplier</label>
+                                <select class="form-select" id="supplierFilter">
+                                    <option value="">All Suppliers</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">&nbsp;</label>
+                                <div class="d-grid">
+                                    <button class="btn btn-outline-secondary" onclick="clearFilters()">
+                                        <i class="fas fa-times me-1"></i>Clear All
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Advanced Filters (Collapsible) -->
+                        <div class="collapse mt-3" id="advancedFilters">
+                            <hr>
+                            <div class="row g-3">
+                                <div class="col-md-3">
+                                    <label class="form-label">Price Range</label>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <input type="number" class="form-control form-control-sm" id="minPrice" placeholder="Min" step="0.01">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" class="form-control form-control-sm" id="maxPrice" placeholder="Max" step="0.01">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Stock Range</label>
+                                    <div class="row g-1">
+                                        <div class="col-6">
+                                            <input type="number" class="form-control form-control-sm" id="minStock" placeholder="Min">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="number" class="form-control form-control-sm" id="maxStock" placeholder="Max">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Unit</label>
+                                    <select class="form-select form-select-sm" id="unitFilter">
+                                        <option value="">All Units</option>
+                                        <option value="pcs">Pieces</option>
+                                        <option value="kg">Kilograms</option>
+                                        <option value="ltr">Liters</option>
+                                        <option value="box">Boxes</option>
+                                        <option value="pack">Packs</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Sort By</label>
+                                    <select class="form-select form-select-sm" id="sortBy">
+                                        <option value="product_name">Name</option>
+                                        <option value="product_code">Code</option>
+                                        <option value="category">Category</option>
+                                        <option value="unit_price">Price</option>
+                                        <option value="current_stock">Stock</option>
+                                        <option value="created_at">Date Added</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="form-label">Order</label>
+                                    <select class="form-select form-select-sm" id="sortOrder">
+                                        <option value="asc">Ascending</option>
+                                        <option value="desc">Descending</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-dark text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-list me-2"></i>Products List
+                            <span class="badge bg-primary ms-2" id="productCount">0</span>
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th onclick="sortTable('product_name')" style="cursor: pointer;">
+                                            Product Name <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortTable('product_code')" style="cursor: pointer;">
+                                            Code <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortTable('category')" style="cursor: pointer;">
+                                            Category <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortTable('unit_price')" style="cursor: pointer;">
+                                            Price <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th onclick="sortTable('current_stock')" style="cursor: pointer;">
+                                            Stock <i class="fas fa-sort"></i>
+                                        </th>
+                                        <th>Status</th>
+                                        <th>Supplier</th>
+                                        <th width="150">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productsTableBody">
+                                    <!-- Products will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-gradient-dark text-white">
+                    <h5 class="modal-title" id="productModalTitle">
+                        <i class="fas fa-plus me-2"></i>Add Product
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="productForm">
+                        <input type="hidden" id="productId">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="productName" class="form-label">Product Name *</label>
+                                <input type="text" class="form-control" id="productName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="productCode" class="form-label">Product Code *</label>
+                                <input type="text" class="form-control" id="productCode" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="category" class="form-label">Category *</label>
+                                <select class="form-select" id="category" required>
+                                    <option value="">Select Category</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="supplier" class="form-label">Supplier</label>
+                                <select class="form-select" id="supplier">
+                                    <option value="">Select Supplier</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="unitPrice" class="form-label">Unit Price *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">â‚¹</span>
+                                    <input type="number" class="form-control" id="unitPrice" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="currentStock" class="form-label">Current Stock *</label>
+                                <input type="number" class="form-control" id="currentStock" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="unit" class="form-label">Unit</label>
+                                <select class="form-select" id="unit">
+                                    <option value="piece">Piece</option>
+                                    <option value="kg">Kilogram</option>
+                                    <option value="liter">Liter</option>
+                                    <option value="meter">Meter</option>
+                                    <option value="box">Box</option>
+                                    <option value="pack">Pack</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="minimumStock" class="form-label">Minimum Stock Level</label>
+                                <input type="number" class="form-control" id="minimumStock" value="5">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="maximumStock" class="form-label">Maximum Stock Level</label>
+                                <input type="number" class="form-control" id="maximumStock" value="100">
+                            </div>
+                            <div class="col-12">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveProduct()">
+                        <i class="fas fa-save me-2"></i>Save Product
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- StockWise Database -->
+    <script src="../js/database.js"></script>
+    
+    <!-- Products Page JavaScript -->
+    <script src="../js\products-page.js"></script>
+</body>
+</html>

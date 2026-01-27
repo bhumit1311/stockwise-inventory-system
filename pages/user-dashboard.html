@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - StockWise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/light-theme.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="../index.html">
+                <i class="fas fa-boxes me-2"></i>StockWise
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="user-dashboard.html">
+                            <i class="fas fa-tachometer-alt me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">
+                            <i class="fas fa-boxes me-1"></i>Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="suppliers.html">
+                            <i class="fas fa-truck me-1"></i>Suppliers
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="stock-movement.html">
+                            <i class="fas fa-exchange-alt me-1"></i>Stock Movement
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user me-1"></i><span id="currentUsername">User</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="profile.html">
+                                <i class="fas fa-user-cog me-2"></i>Profile
+                            </a></li>
+                            <li><a class="dropdown-item" href="settings.html">
+                                <i class="fas fa-cog me-2"></i>Settings
+                            </a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid py-4">
+        <!-- Welcome Section -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card bg-gradient-dark text-white">
+                    <div class="card-body">
+                        <h2 class="card-title mb-2">
+                            <i class="fas fa-user me-2"></i>
+                            Welcome back, <span id="welcomeUsername">User</span>!
+                        </h2>
+                        <p class="card-text mb-0">
+                            <i class="fas fa-calendar me-2"></i>
+                            Today is <span id="currentDate"></span>
+                        </p>
+                        <p class="card-text mb-0">
+                            <i class="fas fa-user-tag me-2"></i>
+                            Role: <span id="userRole" class="badge bg-primary">User</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="feature-icon bg-primary mb-3">
+                            <i class="fas fa-boxes text-white"></i>
+                        </div>
+                        <h3 class="card-title text-primary" id="totalProducts">0</h3>
+                        <p class="card-text text-muted">Available Products</p>
+                        <small class="text-info">
+                            <i class="fas fa-eye me-1"></i>
+                            View all products
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="feature-icon bg-success mb-3">
+                            <i class="fas fa-truck text-white"></i>
+                        </div>
+                        <h3 class="card-title text-success" id="totalSuppliers">0</h3>
+                        <p class="card-text text-muted">Active Suppliers</p>
+                        <small class="text-info">
+                            <i class="fas fa-handshake me-1"></i>
+                            Supplier directory
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <div class="feature-icon bg-warning mb-3">
+                            <i class="fas fa-exclamation-triangle text-white"></i>
+                        </div>
+                        <h3 class="card-title text-warning" id="lowStockItems">0</h3>
+                        <p class="card-text text-muted">Low Stock Items</p>
+                        <small class="text-danger">
+                            <i class="fas fa-bell me-1"></i>
+                            Needs attention
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-dark text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-bolt me-2"></i>Quick Actions
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 mb-3">
+                                <button class="btn btn-primary w-100" onclick="viewProducts()">
+                                    <i class="fas fa-search me-2"></i>View Products
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-3">
+                                <button class="btn btn-success w-100" onclick="viewSuppliers()">
+                                    <i class="fas fa-truck me-2"></i>View Suppliers
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-3">
+                                <button class="btn btn-info w-100" onclick="checkStock()">
+                                    <i class="fas fa-clipboard-check me-2"></i>Check Stock
+                                </button>
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-3">
+                                <button class="btn btn-warning w-100" onclick="viewAlerts()">
+                                    <i class="fas fa-bell me-2"></i>View Alerts
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Overview & Low Stock Alerts -->
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-gradient-dark text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-boxes me-2"></i>Product Overview
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Category</th>
+                                        <th>Current Stock</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productOverview">
+                                    <!-- Product data will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-gradient-dark text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Stock Alerts
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="stockAlerts" class="alert-list">
+                            <!-- Stock alerts will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Overview -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-dark text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-tags me-2"></i>Categories Overview
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="categoriesOverview">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- StockWise Database -->
+    <script src="../js/database.js"></script>
+    
+    <!-- Dashboard Enhancements -->
+    <script src="../js/dashboard-enhancements.js"></script>
+    
+    <!-- Dashboard JavaScript -->
+    <script src="../js\user-dashboard-page.js"></script>
+
+    <style>
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        .alert-list .alert:last-child {
+            margin-bottom: 0;
+        }
+        
+        .table th {
+            border-top: none;
+            font-weight: 600;
+        }
+    </style>
+</body>
+</html>
