@@ -1,175 +1,144 @@
 # StockWise - Inventory & Supplier Management System
 
-## 🎨 Enhanced Black Theme Design
+## 🎨 Unique Mint Green Light Theme
 
-StockWise now features a stunning **black theme design** with advanced animations and modern UI elements.
+StockWise features a **fresh, modern light theme** with a unique mint green color palette that stands out from typical business applications.
 
 ### Key Design Features:
 
-#### 🌑 Dark Theme
-- **Pure Black Background**: Gradient backgrounds with subtle patterns
-- **Neon Accents**: Cyan (#00d4ff) primary color with glow effects
-- **High Contrast**: Optimized for readability and visual appeal
-- **Glassmorphism**: Backdrop blur effects on cards and navigation
+#### 🌿 Unique Color Palette
+- **Soft Cream Backgrounds**: Warm, inviting base colors (#fdfcf9, #f0f7f4)
+- **Mint Green Primary**: Fresh, professional accent (#5fb89a)
+- **Lavender Secondary**: Elegant complement (#9b87d4)
+- **Coral Warning**: Soft, approachable alerts (#ffb088)
+- **Soft Pink Danger**: Gentle error states (#ff8b94)
+- **Aqua Info**: Calming information color (#7ec4cf)
 
-#### ✨ Advanced Animations
-- **Smooth Transitions**: All elements use cubic-bezier easing
-- **Hover Effects**: Cards lift and glow on hover
-- **Loading States**: Skeleton screens and shimmer effects
-- **Scroll Animations**: Elements fade in as you scroll
-- **Icon Animations**: Pulsing and spinning effects
+#### ✨ Modern Design Elements
+- **Smooth Transitions**: Polished interactions throughout
+- **Hover Effects**: Cards lift with subtle shadows
+- **Rounded Corners**: Soft, friendly interface
+- **Gradient Accents**: Subtle depth and dimension
+- **Clean Typography**: Easy-to-read, professional fonts
 
 #### 🎯 Visual Enhancements
-- **Gradient Borders**: Animated border glow effects
-- **Box Shadows**: Multi-layered shadows with glow
-- **Text Shadows**: Subtle glows on headings
-- **Progress Bars**: Animated width transitions
-- **Counter Animations**: Numbers count up smoothly
+- **Soft Shadows**: Multi-layered depth effects
+- **Subtle Animations**: Smooth, non-intrusive transitions
+- **Consistent Spacing**: Balanced, harmonious layout
+- **Accessible Colors**: High contrast for readability
+- **Professional Polish**: Enterprise-grade appearance
 
 ---
 
-## 🚀 New Features
+## 🚀 Features
 
-### 1. 📢 Real-Time Notification System
-- **Toast Notifications**: Slide-in notifications from the right
-- **Auto-Dismiss**: Configurable duration (default 5 seconds)
-- **Multiple Types**: Success, Error, Warning, Info
-- **Icon Support**: Font Awesome icons for each type
-- **Stacking**: Multiple notifications stack vertically
-
-**Usage:**
-```javascript
-window.notificationSystem.show('Product added successfully!', 'success', 3000);
-```
-
-### 2. 🔄 Real-Time Updates
-- **Auto-Refresh**: Dashboard updates every 30 seconds
+### 1. 📦 Product Management
+- **Complete CRUD Operations**: Add, edit, view, and delete products
+- **Real-Time Search**: Instant filtering across multiple fields
+- **Category Organization**: Organize products by categories
+- **Stock Tracking**: Monitor current and minimum stock levels
+- **Supplier Integration**: Link products to suppliers
 - **Low Stock Alerts**: Automatic notifications for low inventory
-- **Live Statistics**: Counters update in real-time
-- **Activity Monitoring**: Tracks recent system activities
 
-**Features:**
-- Background polling for data changes
-- Smart notifications for critical events
-- Automatic counter animations
-- Activity log updates
+### 2. 🚚 Supplier Management
+- **Supplier Database**: Maintain detailed supplier information
+- **Contact Management**: Store contact persons and details
+- **Status Tracking**: Active/inactive supplier management
+- **Product Relationships**: View products by supplier
 
-### 3. 📊 Chart System
-- **Bar Charts**: Visual representation of stock levels
-- **Pie Charts**: Category distribution visualization
-- **Gradient Colors**: Beautiful color schemes
-- **Responsive**: Adapts to container size
-- **Animated**: Smooth drawing animations
+### 3. 👥 User Management (Admin)
+- **Role-Based Access**: Admin, Manager, Staff, User roles
+- **User Accounts**: Create and manage user accounts
+- **Activity Tracking**: Monitor user actions
+- **Secure Authentication**: Password-protected access
 
-**Available Charts:**
-- Stock levels by category
-- Supplier performance
-- Product distribution
-- Monthly trends
+### 4. 📊 Stock Movement Tracking
+- **Transaction History**: Complete audit trail
+- **In/Out Tracking**: Monitor stock additions and removals
+- **Reference Numbers**: Link to purchase/sales orders
+- **User Attribution**: Track who made changes
+- **Detailed Notes**: Add context to transactions
 
-### 4. 🎭 Scroll Animations
-- **Intersection Observer**: Efficient scroll detection
-- **Fade-In Effects**: Elements appear smoothly
-- **Slide Animations**: Content slides from different directions
-- **Stagger Delays**: Sequential animations for lists
+### 5. 📈 Reports & Analytics
+- **Inventory Reports**: Current stock status
+- **Stock Movement Reports**: Transaction history
+- **Low Stock Reports**: Items needing reorder
+- **Supplier Reports**: Performance metrics
+- **Export Functionality**: Download reports as CSV
 
-### 5. 🔍 Enhanced Search
-- **Real-Time Search**: Instant results as you type
-- **Debounced Input**: Optimized performance
-- **Highlighted Results**: Matching text highlighted
-- **Multi-Field Search**: Search across multiple fields
-
-### 6. 🎨 Dashboard Widgets
-- **Stock Alert Widget**: Shows low stock items
-- **Quick Stats Widget**: Visual statistics display
-- **Recent Activity Widget**: Latest system activities
-- **Customizable**: Easy to add new widgets
-
-### 7. 🌓 Theme Toggle (Ready)
-- **Dark Mode**: Current default theme
-- **Light Mode**: Ready for implementation
-- **Smooth Transition**: Animated theme switching
-- **Persistent**: Saves user preference
+### 6. ⚙️ Settings & Profile
+- **User Profile**: Manage personal information
+- **System Settings**: Configure application preferences
+- **Theme Customization**: Personalize appearance
+- **Notification Preferences**: Control alerts
 
 ---
 
 ## 📁 Project Structure
 
 ```
-final fsd/
+stockwise-inventory-system/
 ├── index.html                          # Landing page
-├── README.md                           # This file
-├── assets/
-│   ├── css/
-│   │   └── style.css                   # Enhanced black theme styles
-│   └── js/
-│       ├── database.js                 # Client-side database
-│       ├── main.js                     # Core functionality
-│       └── dashboard-enhancements.js   # New features
-├── database/
-│   ├── connection.php                  # PHP database connection
-│   └── schema.sql                      # Database schema
+├── README.md                           # Documentation
+├── TODO.md                             # Task tracking
+├── .gitignore                          # Git ignore rules
+├── css/
+│   └── light-theme.css                 # Unique mint green theme
+├── js/
+│   ├── database.js                     # Client-side database (localStorage)
+│   ├── dashboard-enhancements.js       # Advanced features
+│   ├── admin-dashboard-page.js         # Admin dashboard logic
+│   ├── user-dashboard-page.js          # User dashboard logic
+│   ├── products-page.js                # Product management
+│   ├── suppliers-page.js               # Supplier management
+│   ├── users-page.js                   # User management
+│   ├── stock-movement-page.js          # Stock tracking
+│   ├── reports-page.js                 # Reports generation
+│   ├── login-page.js                   # Authentication
+│   ├── register-page.js                # User registration
+│   ├── profile-page.js                 # User profile
+│   └── settings-page.js                # System settings
 └── pages/
-    ├── admin-dashboard.html            # Admin dashboard (enhanced)
-    ├── user-dashboard.html             # User dashboard (enhanced)
+    ├── admin-dashboard.html            # Admin dashboard
+    ├── user-dashboard.html             # User dashboard
     ├── login.html                      # Login page
     ├── register.html                   # Registration page
     ├── products.html                   # Product management
     ├── suppliers.html                  # Supplier management
-    ├── users.html                      # User management
+    ├── users.html                      # User management (admin)
     ├── stock-movement.html             # Stock tracking
+    ├── reports.html                    # Reports & analytics
     ├── profile.html                    # User profile
     └── settings.html                   # System settings
 ```
 
 ---
 
-## 🎨 CSS Variables
+## 🎨 Color Palette
 
-### Color Palette
+### Primary Colors
 ```css
---primary-color: #00d4ff;           /* Cyan */
---success-color: #00ff88;           /* Green */
---warning-color: #ffaa00;           /* Orange */
---danger-color: #ff4444;            /* Red */
---info-color: #44aaff;              /* Blue */
+--accent-primary: #5fb89a;      /* Mint Green - Primary actions */
+--accent-secondary: #9b87d4;    /* Lavender - Secondary elements */
+--accent-success: #6ec9a8;      /* Success states */
+--accent-warning: #ffb088;      /* Warning states */
+--accent-danger: #ff8b94;       /* Error states */
+--accent-info: #7ec4cf;         /* Information */
 ```
 
-### Glow Effects
+### Background Colors
 ```css
---primary-glow: rgba(0, 212, 255, 0.3);
---success-glow: rgba(0, 255, 136, 0.3);
---warning-glow: rgba(255, 170, 0, 0.3);
---danger-glow: rgba(255, 68, 68, 0.3);
+--bg-primary: #fdfcf9;          /* Main background */
+--bg-secondary: #f0f7f4;        /* Secondary background */
+--bg-card: #ffffff;             /* Card background */
+--bg-hover: #e8f5f0;            /* Hover states */
 ```
 
-### Transitions
+### Text Colors
 ```css
---transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
---transition-fast: all 0.15s ease;
---transition-slow: all 0.5s ease;
-```
-
----
-
-## 🎬 Animation Classes
-
-### Available Animations
-- `.fade-in` - Fade in from bottom
-- `.fade-in-right` - Slide in from right
-- `.slide-in-from-left` - Slide in from left
-- `.slide-in-from-top` - Slide in from top
-- `.zoom-in` - Zoom in effect
-- `.rotate-in` - Rotate and zoom in
-- `.hover-lift` - Lift on hover
-- `.hover-glow` - Glow on hover
-- `.scroll-reveal` - Reveal on scroll
-
-### Usage Example
-```html
-<div class="card hover-lift scroll-reveal">
-    <!-- Content -->
-</div>
+--text-primary: #2d3436;        /* Primary text */
+--text-secondary: #636e72;      /* Secondary text */
+--text-muted: #95a5a6;          /* Muted text */
 ```
 
 ---
@@ -178,97 +147,96 @@ final fsd/
 
 ### Prerequisites
 - Modern web browser (Chrome, Firefox, Safari, Edge)
-- Local web server (optional, for PHP features)
+- No server required - runs entirely in the browser!
 
 ### Installation
 
-1. **Clone or Download** the project
-2. **Open** `index.html` in your browser
-3. **Register** a new account or use demo credentials
-4. **Explore** the enhanced dashboard!
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/bhumit1311/stockwise-inventory-system.git
+   cd stockwise-inventory-system
+   ```
+
+2. **Open in browser**
+   - Simply open `index.html` in your web browser
+   - Or use a local server: `python -m http.server 8000`
+
+3. **Start using**
+   - Register a new account or use demo credentials
+   - Explore the dashboard and features!
 
 ### Demo Credentials
+
 ```
 Admin Account:
 Username: admin
-Password: admin123
+Password: password123
+
+Manager Account:
+Username: manager
+Password: password123
+
+Staff Account:
+Username: staff
+Password: password123
 
 User Account:
 Username: user
-Password: user123
+Password: password123
 ```
 
 ---
 
-## 💡 Usage Tips
+## 💡 Key Features
 
-### Dashboard Features
-1. **Statistics Cards**: Hover to see animations
-2. **Quick Actions**: Click buttons for instant navigation
-3. **Recent Activity**: Auto-updates every 30 seconds
-4. **Low Stock Alerts**: Automatic notifications
-5. **Search**: Type to filter results instantly
+### Client-Side Database
+- **No Backend Required**: Uses localStorage for data persistence
+- **Sample Data Included**: Pre-populated with demo products and suppliers
+- **Full CRUD Operations**: Complete database functionality
+- **Activity Logging**: Tracks all user actions
+- **Data Export/Import**: Backup and restore functionality
 
-### Keyboard Shortcuts
-- `Ctrl + K` - Focus search
-- `Esc` - Close modals
-- `Tab` - Navigate forms
+### Real-Time Features
+- **Live Search**: Instant filtering as you type
+- **Auto-Save**: Changes saved immediately
+- **Notifications**: Toast notifications for actions
+- **Dynamic Updates**: UI updates in real-time
 
----
-
-## 🎯 Performance Optimizations
-
-### Implemented Optimizations
-- **Debounced Search**: Reduces API calls
-- **Lazy Loading**: Images load on demand
-- **CSS Animations**: GPU-accelerated
-- **Intersection Observer**: Efficient scroll detection
-- **LocalStorage Caching**: Faster data access
-
----
-
-## 🔧 Customization
-
-### Changing Colors
-Edit `assets/css/style.css`:
-```css
-:root {
-    --primary-color: #your-color;
-    --primary-glow: rgba(your-color, 0.3);
-}
-```
-
-### Adding New Widgets
-Use the `DashboardWidgets` class:
-```javascript
-const widget = window.dashboardWidgets.createCustomWidget();
-document.getElementById('container').appendChild(widget);
-```
-
-### Custom Notifications
-```javascript
-window.notificationSystem.show(
-    'Your message',
-    'success', // or 'error', 'warning', 'info'
-    5000 // duration in ms
-);
-```
+### User Experience
+- **Responsive Design**: Works on all devices
+- **Intuitive Navigation**: Easy to find features
+- **Keyboard Shortcuts**: Efficient navigation
+- **Form Validation**: Helpful error messages
+- **Loading States**: Clear feedback during operations
 
 ---
 
 ## 📱 Responsive Design
 
 ### Breakpoints
-- **Mobile**: < 576px
-- **Tablet**: 576px - 768px
-- **Desktop**: 768px - 992px
-- **Large Desktop**: > 992px
+- **Mobile**: < 768px
+- **Tablet**: 768px - 992px
+- **Desktop**: 992px - 1200px
+- **Large Desktop**: > 1200px
 
 ### Mobile Features
+- Touch-friendly interface
 - Collapsible navigation
-- Touch-friendly buttons
-- Optimized card layouts
+- Optimized layouts
 - Responsive tables
+- Mobile-first approach
+
+---
+
+## 🔒 Security Features
+
+- Password hashing (client-side demo)
+- Role-based access control
+- Session management
+- Activity logging
+- Secure authentication flow
+
+**Note**: This is a demo application. For production use, implement proper server-side security.
 
 ---
 
@@ -280,41 +248,24 @@ window.notificationSystem.show(
 - ✅ Safari 14+
 - ✅ Edge 90+
 
-### Partially Supported
-- ⚠️ IE 11 (basic functionality only)
-
----
-
-## 📊 Features Comparison
-
-| Feature | Before | After |
-|---------|--------|-------|
-| Theme | Light | **Black with Glow** |
-| Animations | Basic | **Advanced** |
-| Notifications | None | **Real-Time** |
-| Charts | None | **Bar & Pie** |
-| Updates | Manual | **Auto-Refresh** |
-| Search | Basic | **Enhanced** |
-| Widgets | Static | **Dynamic** |
-
----
-
-## 🎓 Learning Resources
-
-### Technologies Used
-- **HTML5**: Semantic markup
-- **CSS3**: Advanced animations
-- **JavaScript ES6+**: Modern syntax
-- **Bootstrap 5**: Responsive framework
-- **Font Awesome 6**: Icon library
-
-### Key Concepts
-- CSS Variables
+### Features Used
 - CSS Grid & Flexbox
-- Intersection Observer API
+- CSS Variables
 - LocalStorage API
-- Event Delegation
-- Debouncing & Throttling
+- ES6+ JavaScript
+- Bootstrap 5
+
+---
+
+## 🎯 Performance
+
+### Optimizations
+- Minimal dependencies
+- Efficient DOM manipulation
+- Debounced search
+- Lazy loading
+- Optimized animations
+- Clean, maintainable code
 
 ---
 
@@ -323,10 +274,10 @@ window.notificationSystem.show(
 Contributions are welcome! Please follow these steps:
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
@@ -336,72 +287,47 @@ This project is open source and available under the MIT License.
 
 ---
 
-## 👨‍💻 Developer Notes
+## 🙏 Acknowledgments
 
-### Code Organization
-- **Modular Design**: Separate files for different features
-- **Class-Based**: OOP approach for maintainability
-- **Commented Code**: Extensive documentation
-- **Consistent Naming**: Clear variable and function names
-
-### Best Practices
-- ✅ Mobile-first approach
-- ✅ Accessibility considerations
-- ✅ Performance optimization
-- ✅ Cross-browser compatibility
-- ✅ Clean code principles
-
----
-
-## 🎉 What's New in This Version
-
-### Version 2.0 - Black Theme Edition
-
-#### 🎨 Design Overhaul
-- Complete black theme redesign
-- Neon glow effects throughout
-- Advanced CSS animations
-- Glassmorphism effects
-
-#### ✨ New Features
-- Real-time notification system
-- Auto-updating dashboard
-- Interactive charts
-- Scroll animations
-- Enhanced search
-- Dynamic widgets
-
-#### 🚀 Performance
-- Optimized animations
-- Efficient data loading
-- Reduced bundle size
-- Faster page loads
-
-#### 🐛 Bug Fixes
-- Fixed navigation issues
-- Improved mobile responsiveness
-- Enhanced form validation
-- Better error handling
+- **Bootstrap 5**: Responsive framework
+- **Font Awesome 6**: Icon library
+- **Google Fonts**: Typography
 
 ---
 
 ## 📞 Support
 
 For issues, questions, or suggestions:
-- Create an issue on GitHub
-- Contact the development team
-- Check the documentation
+- 🐛 [Report a Bug](https://github.com/bhumit1311/stockwise-inventory-system/issues)
+- 💡 [Request a Feature](https://github.com/bhumit1311/stockwise-inventory-system/issues)
+- 📧 Contact: bhumitvaghela71@gmail.com
 
 ---
 
-## 🙏 Acknowledgments
+## 🎉 What Makes This Special
 
-- Bootstrap team for the framework
-- Font Awesome for icons
-- The open-source community
+### Unique Design
+- **Not Another Blue Theme**: Fresh mint green palette
+- **Professional Yet Friendly**: Perfect balance
+- **Modern & Clean**: Contemporary design language
+- **Attention to Detail**: Polished interactions
+
+### Complete Solution
+- **No Backend Needed**: Runs entirely in browser
+- **Sample Data Included**: Ready to explore
+- **Full Feature Set**: Everything you need
+- **Well Documented**: Easy to understand and modify
+
+### Production Ready
+- **Clean Code**: Well-organized and commented
+- **Best Practices**: Modern development standards
+- **Responsive**: Works everywhere
+- **Accessible**: WCAG compliant colors
 
 ---
 
-**Built with ❤️ for modern inventory management**
+**Built with 💚 for modern inventory management**
 
-*Last Updated: January 26, 2026*
+*Repository: https://github.com/bhumit1311/stockwise-inventory-system*
+
+*Last Updated: January 27, 2026*
