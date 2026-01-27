@@ -428,7 +428,7 @@ let currentSuppliers = [];
                                         <td>${product.product_name}</td>
                                         <td><code>${product.product_code}</code></td>
                                         <td><span class="badge bg-secondary">${product.category}</span></td>
-                                        <td>â‚¹${parseFloat(product.unit_price).toFixed(2)}</td>
+                                        <td>₹${parseFloat(product.unit_price).toFixed(2)}</td>
                                         <td>${product.current_stock} ${product.unit}</td>
                                     </tr>
                                 `).join('')}

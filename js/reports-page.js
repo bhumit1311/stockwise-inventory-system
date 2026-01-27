@@ -34,7 +34,7 @@
 
             // Total inventory value
             const totalValue = products.reduce((sum, p) => sum + (p.unit_price * p.current_stock), 0);
-            document.getElementById('totalValue').textContent = 'â‚¹' + totalValue.toLocaleString('en-IN');
+            document.getElementById('totalValue').textContent = '₹' + totalValue.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
             // Low stock count
             const lowStock = products.filter(p => p.current_stock <= p.minimum_stock);
@@ -97,9 +97,9 @@
                     <td>${product.product_code}</td>
                     <td>${product.product_name}</td>
                     <td>${product.category}</td>
-                    <td>â‚¹${product.unit_price.toLocaleString('en-IN')}</td>
+                    <td>₹${product.unit_price.toLocaleString('en-IN')}</td>
                     <td>${product.current_stock} ${product.unit}</td>
-                    <td>â‚¹${stockValue.toLocaleString('en-IN')}</td>
+                    <td>₹${stockValue.toLocaleString('en-IN')}</td>
                     <td>${status}</td>
                 </tr>`;
             });
@@ -293,7 +293,7 @@
                     data: {
                         labels: Object.keys(categoryValue),
                         datasets: [{
-                            label: 'Stock Value (â‚¹)',
+                            label: 'Stock Value (₹)',
                             data: Object.values(categoryValue),
                             backgroundColor: '#3b82f6',
                             borderColor: '#2563eb',
@@ -314,7 +314,7 @@
                                 ticks: {
                                     color: '#d1d5db',
                                     callback: function(value) {
-                                        return 'â‚¹' + value.toLocaleString('en-IN');
+                                        return '₹' + value.toLocaleString('en-IN');
                                     }
                                 },
                                 grid: {

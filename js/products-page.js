@@ -145,7 +145,7 @@ let currentProducts = [];
                         </td>
                         <td><code>${product.product_code}</code></td>
                         <td><span class="badge bg-secondary">${product.category}</span></td>
-                        <td><strong>â‚¹${parseFloat(product.unit_price).toFixed(2)}</strong></td>
+                        <td><strong>₹${parseFloat(product.unit_price).toFixed(2)}</strong></td>
                         <td>
                             <span class="badge ${stockStatus.class}">${product.current_stock} ${product.unit}</span>
                             <br><small class="text-muted">Min: ${product.minimum_stock}</small>
@@ -385,7 +385,7 @@ let currentProducts = [];
                     <div class="col-md-6"><strong>Product Name:</strong><br>${product.product_name}</div>
                     <div class="col-md-6"><strong>Product Code:</strong><br><code>${product.product_code}</code></div>
                     <div class="col-md-6"><strong>Category:</strong><br><span class="badge bg-secondary">${product.category}</span></div>
-                    <div class="col-md-6"><strong>Unit Price:</strong><br>â‚¹${parseFloat(product.unit_price).toFixed(2)}</div>
+                    <div class="col-md-6"><strong>Unit Price:</strong><br>₹${parseFloat(product.unit_price).toFixed(2)}</div>
                     <div class="col-md-6"><strong>Current Stock:</strong><br><span class="badge ${stockStatus.class}">${product.current_stock} ${product.unit}</span></div>
                     <div class="col-md-6"><strong>Stock Status:</strong><br><span class="badge ${stockStatus.class}">${stockStatus.text}</span></div>
                     <div class="col-md-6"><strong>Minimum Stock:</strong><br>${product.minimum_stock} ${product.unit}</div>
