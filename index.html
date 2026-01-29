@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StockWise - Professional inventory management system with real-time tracking, automated alerts, and comprehensive reporting. Manage your stock efficiently.">
+    <meta name="keywords" content="inventory management, stock control, warehouse management, inventory tracking, supply chain, stock management system">
+    <meta name="author" content="StockWise Team">
+    <meta property="og:title" content="StockWise - Modern Inventory Management System">
+    <meta property="og:description" content="Enterprise-grade inventory management with real-time tracking and automated alerts">
+    <meta property="og:type" content="website">
     <title>StockWise - Modern Inventory Management System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="css/light-theme.css" rel="stylesheet">
+    <link href="css/mobile-fixes.css" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" role="navigation">
         <div class="container">
             <a class="navbar-brand" href="#"><i class="fas fa-boxes me-2 text-primary"></i>StockWise</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -26,7 +34,6 @@
         </div>
     </nav>
 
-    <section class="hero-section">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
@@ -36,35 +43,35 @@
                             StockWise provides enterprise-grade inventory management with real-time tracking, automated alerts, and comprehensive reporting.
                         </p>
                         <div class="d-flex gap-3 flex-wrap">
-                            <a href="pages/register.html" class="btn btn-primary btn-hero">Get Started</a>
-                            <a href="pages/login.html" class="btn btn-outline-light btn-hero">Sign In</a>
+                            <a href="pages/register.html" class="btn btn-primary btn-hero" aria-label="Get Started with StockWise">Get Started</a>
+                            <a href="pages/login.html" class="btn btn-outline-light btn-hero" aria-label="Sign in to StockWise">Sign In</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="hero-image">
-                        <i class="fas fa-boxes"></i>
+                    <div class="hero-image" aria-label="Dashboard Statistics">
+                        <i class="fas fa-boxes" aria-hidden="true"></i>
                         <div class="row g-3 mt-3">
                             <div class="col-6">
-                                <div class="stat-card">
-                                    <h4 class="text-primary mb-1">1,247</h4>
+                                <div class="stat-card" role="status" aria-label="Total Products">
+                                    <h4 class="text-primary mb-1" id="heroProducts">1,247</h4>
                                     <small class="text-muted">Products</small>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="stat-card">
+                                <div class="stat-card" role="status" aria-label="Stock Availability">
                                     <h4 class="text-success mb-1">98.4%</h4>
                                     <small class="text-muted">In Stock</small>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="stat-card">
-                                    <h4 class="text-warning mb-1">45</h4>
+                                <div class="stat-card" role="status" aria-label="Total Suppliers">
+                                    <h4 class="text-warning mb-1" id="heroSuppliers">45</h4>
                                     <small class="text-muted">Suppliers</small>
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="stat-card">
+                                <div class="stat-card" role="status" aria-label="System Monitoring">
                                     <h4 class="text-info mb-1">24/7</h4>
                                     <small class="text-muted">Monitoring</small>
                                 </div>
@@ -76,7 +83,8 @@
         </div>
     </section>
 
-    <section id="features" class="py-5">
+    <main>
+        <section id="features" class="py-5">
         <div class="container py-5">
             <div class="text-center mb-5">
                 <h2 class="display-5 fw-bold mb-3">Professional Control</h2>
@@ -126,19 +134,45 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <section id="about" class="py-5">
-        <div class="container text-center py-5">
-            <h3 class="mb-4">Ready to Get Started?</h3>
-            <p class="text-secondary mb-4">Join thousands of businesses managing their inventory with StockWise.</p>
-            <a href="pages/register.html" class="btn btn-primary btn-lg">Create Free Account</a>
-            <hr class="my-5 border-secondary">
-            <p class="text-secondary mb-0">&copy; 2026 StockWise. All rights reserved.</p>
+        <section id="about" class="py-5">
+            <div class="container text-center py-5">
+                <h3 class="mb-4">Ready to Get Started?</h3>
+                <p class="text-secondary mb-4">Join thousands of businesses managing their inventory with StockWise.</p>
+                <a href="pages/register.html" class="btn btn-primary btn-lg" aria-label="Create Free Account">Create Free Account</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-4 bg-dark text-white">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2026 StockWise. All rights reserved.</p>
         </div>
-    </section>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/database.js"></script>
+    <script>
+        // Update hero stats with real data if available
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                if (typeof StockWiseDB !== 'undefined') {
+                    const products = StockWiseDB.db.getAll('products');
+                    const suppliers = StockWiseDB.db.getAll('suppliers');
+                    
+                    if (products.length > 0) {
+                        document.getElementById('heroProducts').textContent = products.length.toLocaleString();
+                    }
+                    if (suppliers.length > 0) {
+                        document.getElementById('heroSuppliers').textContent = suppliers.length;
+                    }
+                }
+            } catch (e) {
+                // Silently fail if database not available
+            }
+        });
+    </script>
 </body>
 </html>

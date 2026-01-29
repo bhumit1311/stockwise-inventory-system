@@ -1,0 +1,130 @@
+{
+  "users": [
+    {
+      "id": "user_admin_001",
+      "username": "admin",
+      "email": "admin@stockwise.com",
+      "password": "hash_password123",
+      "full_name": "System Administrator",
+      "role": "admin",
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00.000Z",
+      "last_login": null
+    },
+    {
+      "id": "user_manager_001",
+      "username": "manager",
+      "email": "manager@stockwise.com",
+      "password": "hash_password123",
+      "full_name": "Store Manager",
+      "role": "user",
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00.000Z",
+      "last_login": null
+    },
+    {
+      "id": "user_staff_001",
+      "username": "staff",
+      "email": "staff@stockwise.com",
+      "password": "hash_password123",
+      "full_name": "Staff Member",
+      "role": "staff",
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00.000Z",
+      "last_login": null
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat_001",
+      "name": "Electronics",
+      "description": "Electronic devices and components",
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "cat_002",
+      "name": "Clothing",
+      "description": "Apparel and fashion items",
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "cat_003",
+      "name": "Books",
+      "description": "Books and educational materials",
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00.000Z"
+    }
+  ],
+  "suppliers": [
+    {
+      "id": "sup_001",
+      "supplier_name": "TechCorp Solutions",
+      "contact_person": "John Smith",
+      "email": "john@techcorp.com",
+      "phone": "+91-9876543210",
+      "address": "123 Tech Street, Mumbai, Maharashtra 400001",
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "sup_002",
+      "supplier_name": "Fashion Hub Ltd",
+      "contact_person": "Sarah Johnson",
+      "email": "sarah@fashionhub.com",
+      "phone": "+91-9876543211",
+      "address": "456 Fashion Avenue, Delhi, Delhi 110001",
+      "status": "active",
+      "created_at": "2026-01-01T00:00:00.000Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod_001",
+      "product_code": "ELEC-001",
+      "product_name": "Laptop Dell Inspiron 15",
+      "category": "Electronics",
+      "supplier_id": "sup_001",
+      "unit_price": 45000,
+      "current_stock": 25,
+      "minimum_stock": 5,
+      "unit": "piece",
+      "status": "active",
+      "created_at": "2026-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "prod_002",
+      "product_code": "CLTH-001",
+      "product_name": "Cotton T-Shirt Blue",
+      "category": "Clothing",
+      "supplier_id": "sup_002",
+      "unit_price": 500,
+      "current_stock": 100,
+      "minimum_stock": 30,
+      "unit": "piece",
+      "status": "active",
+      "created_at": "2026-01-15T10:00:00.000Z"
+    }
+  ],
+  "demo_credentials": {
+    "admin": {
+      "username": "admin",
+      "password": "password123",
+      "role": "admin",
+      "description": "Full system access"
+    },
+    "manager": {
+      "username": "manager",
+      "password": "password123",
+      "role": "user",
+      "description": "View and manage inventory"
+    },
+    "staff": {
+      "username": "staff",
+      "password": "password123",
+      "role": "staff",
+      "description": "View and update stock"
+    }
+  }
+}

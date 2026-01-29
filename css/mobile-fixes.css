@@ -1,0 +1,318 @@
+/**
+ * StockWise Mobile Fixes
+ * Responsive design improvements for mobile devices
+ */
+
+/* ===== MOBILE NAVIGATION FIXES ===== */
+@media (max-width: 991.98px) {
+    /* Fix navbar collapse on mobile */
+    .navbar-collapse {
+        background: var(--bg-card, #ffffff);
+        padding: 1rem;
+        margin-top: 0.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-dark .navbar-collapse {
+        background: #1a1a1a;
+    }
+    
+    /* Fix dropdown menu positioning */
+    .navbar-nav .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        padding-left: 1rem;
+    }
+    
+    /* Fix logout button visibility */
+    .navbar-nav .dropdown-item {
+        color: var(--text-primary, #2d3436) !important;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+    }
+    
+    .navbar-dark .dropdown-item {
+        color: #ffffff !important;
+    }
+    
+    .navbar-nav .dropdown-item:hover {
+        background: var(--bg-hover, #e8f5f0);
+    }
+    
+    .navbar-dark .dropdown-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Fix nav links spacing */
+    .navbar-nav .nav-item {
+        margin: 0.25rem 0;
+    }
+    
+    .navbar-nav .nav-link {
+        padding: 0.75rem 1rem;
+        border-radius: 4px;
+    }
+    
+    /* Fix theme toggle button */
+    #themeToggle {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+}
+
+/* ===== TEXT OVERFLOW FIXES ===== */
+@media (max-width: 767.98px) {
+    /* Prevent text overflow in cards */
+    .card-title {
+        font-size: 1.1rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .card-text {
+        font-size: 0.9rem;
+    }
+    
+    /* Fix table responsiveness */
+    .table-responsive {
+        font-size: 0.85rem;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.5rem;
+        white-space: nowrap;
+    }
+    
+    /* Fix stat cards */
+    .stat-card h3,
+    .stat-card .card-title {
+        font-size: 1.5rem;
+    }
+    
+    .stat-card p,
+    .stat-card .card-text {
+        font-size: 0.85rem;
+    }
+    
+    /* Fix button text */
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+    
+    .btn-sm {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    /* Fix welcome section */
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    /* Fix feature cards */
+    .feature-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .feature-card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== SMALL MOBILE DEVICES ===== */
+@media (max-width: 575.98px) {
+    /* Container padding */
+    .container-fluid {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    /* Card spacing */
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+    /* Button groups */
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Modal adjustments */
+    .modal-dialog {
+        margin: 0.5rem;
+    }
+    
+    /* Form controls */
+    .form-control,
+    .form-select {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Fix long text in badges */
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        word-break: break-word;
+    }
+    
+    /* Fix activity items */
+    .activity-item {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+    
+    .activity-icon {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ===== LANDSCAPE MOBILE ===== */
+@media (max-width: 991.98px) and (orientation: landscape) {
+    .navbar-collapse {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
+
+/* ===== TOUCH IMPROVEMENTS ===== */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets */
+    .btn,
+    .nav-link,
+    .dropdown-item {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .card:hover {
+        transform: none;
+    }
+    
+    /* Better tap highlighting */
+    * {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .navbar,
+    .btn,
+    .dropdown,
+    #themeToggle,
+    .toast-container,
+    .global-loader {
+        display: none !important;
+    }
+    
+    .card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* ===== FIX FOR SPECIFIC ISSUES ===== */
+
+/* Fix logout button click area on mobile */
+#logoutBtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+/* Fix user dropdown on mobile */
+@media (max-width: 991.98px) {
+    .navbar-nav .dropdown-toggle::after {
+        float: right;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Fix report page user button visibility */
+.navbar-nav .nav-item {
+    display: block !important;
+}
+
+.navbar-nav .dropdown {
+    display: block !important;
+}
+
+/* Ensure all nav items are visible */
+@media (max-width: 991.98px) {
+    .navbar-nav {
+        display: flex !important;
+        flex-direction: column;
+    }
+    
+    .navbar-nav .nav-item,
+    .navbar-nav .dropdown {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+}
+
+/* Fix stat cards on index page */
+.stat-card {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Fix chart responsiveness */
+canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+/* Fix table overflow on mobile */
+@media (max-width: 767.98px) {
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table {
+        min-width: 600px;
+    }
+}

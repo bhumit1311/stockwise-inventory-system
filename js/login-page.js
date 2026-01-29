@@ -177,18 +177,24 @@
             const user = StockWiseDB.authenticateUser(username, password);
             
             if (user) {
-                // Add remember me preference
-                user.rememberMe = rememberMe;
-                
-                // Store user data based on remember me preference
-                if (rememberMe) {
-                    localStorage.setItem('stockwise_user', JSON.stringify(user));
+                // Create session using AuthGuard
+                if (typeof AuthGuard !== 'undefined') {
+                    AuthGuard.createSession(user, rememberMe);
                 } else {
-                    sessionStorage.setItem('stockwise_user', JSON.stringify(user));
+                    // Fallback to old method
+                    if (rememberMe) {
+                        localStorage.setItem('stockwise_user', JSON.stringify(user));
+                    } else {
+                        sessionStorage.setItem('stockwise_user', JSON.stringify(user));
+                    }
                 }
                 
-                // Show success message
-                showAlert('Login successful! Redirecting to dashboard...', 'success');
+                // Show success message with UIUtils if available
+                if (typeof UIUtils !== 'undefined') {
+                    UIUtils.showToast('Login successful! Redirecting...', 'success', 2000);
+                } else {
+                    showAlert('Login successful! Redirecting to dashboard...', 'success');
+                }
                 
                 // Redirect to appropriate dashboard
                 setTimeout(() => {
@@ -197,7 +203,11 @@
                 
             } else {
                 // Show error message
-                showAlert('Invalid username or password. Please try again.', 'danger');
+                if (typeof UIUtils !== 'undefined') {
+                    UIUtils.showToast('Invalid username or password', 'error', 3000);
+                } else {
+                    showAlert('Invalid username or password. Please try again.', 'danger');
+                }
                 setLoadingState(false);
                 
                 // Focus on username field

@@ -1,271 +1,311 @@
-# StockWise - Inventory & Supplier Management System
+# 📦 StockWise - Modern Inventory Management System
 
-## 🎨 Unique Mint Green Light Theme
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
 
-StockWise features a **fresh, modern light theme** with a unique mint green color palette that stands out from typical business applications.
-
-### Key Design Features:
-
-#### 🌿 Unique Color Palette
-- **Soft Cream Backgrounds**: Warm, inviting base colors (#fdfcf9, #f0f7f4)
-- **Mint Green Primary**: Fresh, professional accent (#5fb89a)
-- **Lavender Secondary**: Elegant complement (#9b87d4)
-- **Coral Warning**: Soft, approachable alerts (#ffb088)
-- **Soft Pink Danger**: Gentle error states (#ff8b94)
-- **Aqua Info**: Calming information color (#7ec4cf)
-
-#### ✨ Modern Design Elements
-- **Smooth Transitions**: Polished interactions throughout
-- **Hover Effects**: Cards lift with subtle shadows
-- **Rounded Corners**: Soft, friendly interface
-- **Gradient Accents**: Subtle depth and dimension
-- **Clean Typography**: Easy-to-read, professional fonts
-
-#### 🎯 Visual Enhancements
-- **Soft Shadows**: Multi-layered depth effects
-- **Subtle Animations**: Smooth, non-intrusive transitions
-- **Consistent Spacing**: Balanced, harmonious layout
-- **Accessible Colors**: High contrast for readability
-- **Professional Polish**: Enterprise-grade appearance
+A professional, full-featured inventory management system built with modern web technologies. StockWise provides real-time tracking, comprehensive reporting, and role-based access control for efficient inventory management.
 
 ---
 
-## 🚀 Features
+## 🌟 Features
 
-### 1. 📦 Product Management
-- **Complete CRUD Operations**: Add, edit, view, and delete products
-- **Real-Time Search**: Instant filtering across multiple fields
-- **Category Organization**: Organize products by categories
-- **Stock Tracking**: Monitor current and minimum stock levels
-- **Supplier Integration**: Link products to suppliers
-- **Low Stock Alerts**: Automatic notifications for low inventory
+### Core Functionality
+- ✅ **Real-time Inventory Tracking** - Monitor stock levels in real-time
+- ✅ **Product Management** - Add, edit, and manage products with ease
+- ✅ **Supplier Management** - Track and manage supplier relationships
+- ✅ **User Management** - Role-based access control (Admin, User, Staff)
+- ✅ **Stock Movement Tracking** - Complete audit trail of all stock changes
+- ✅ **Low Stock Alerts** - Automatic notifications for low inventory
+- ✅ **Comprehensive Reports** - Detailed analytics and reporting
+- ✅ **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
 
-### 2. 🚚 Supplier Management
-- **Supplier Database**: Maintain detailed supplier information
-- **Contact Management**: Store contact persons and details
-- **Status Tracking**: Active/inactive supplier management
-- **Product Relationships**: View products by supplier
+### Advanced Features
+- 📊 **Analytics Dashboard** - Visual charts and statistics
+- 🔐 **Secure Authentication** - Session management with auto-expiry
+- 📱 **Mobile Optimized** - Touch-friendly interface for mobile devices
+- 🎨 **Modern UI/UX** - Clean, professional interface
+- 💾 **Data Export** - Export reports to CSV/JSON
+- 🔍 **Advanced Search** - Quick product and supplier lookup
+- 📈 **Trend Analysis** - Track inventory trends over time
+- ⚡ **Fast Performance** - Client-side data management for speed
 
-### 3. 👥 User Management (Admin)
-- **Role-Based Access**: Admin, Manager, Staff, User roles
-- **User Accounts**: Create and manage user accounts
-- **Activity Tracking**: Monitor user actions
-- **Secure Authentication**: Password-protected access
+---
 
-### 4. 📊 Stock Movement Tracking
-- **Transaction History**: Complete audit trail
-- **In/Out Tracking**: Monitor stock additions and removals
-- **Reference Numbers**: Link to purchase/sales orders
-- **User Attribution**: Track who made changes
-- **Detailed Notes**: Add context to transactions
+## 🚀 Quick Start
 
-### 5. 📈 Reports & Analytics
-- **Inventory Reports**: Current stock status
-- **Stock Movement Reports**: Transaction history
-- **Low Stock Reports**: Items needing reorder
-- **Supplier Reports**: Performance metrics
-- **Export Functionality**: Download reports as CSV
+### Prerequisites
+- Modern web browser (Chrome, Firefox, Safari, Edge)
+- No server or database required - runs entirely in the browser!
 
-### 6. ⚙️ Settings & Profile
-- **User Profile**: Manage personal information
-- **System Settings**: Configure application preferences
-- **Theme Customization**: Personalize appearance
-- **Notification Preferences**: Control alerts
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/stockwise.git
+   cd stockwise
+   ```
+
+2. **Open in browser**
+   ```bash
+   # Simply open index.html in your browser
+   # Or use a local server:
+   python -m http.server 8000
+   # Then visit: http://localhost:8000
+   ```
+
+3. **Login with demo credentials**
+   - See [Demo Credentials](#-demo-credentials) section below
+
+---
+
+## 👥 User Roles
+
+### 🔴 Admin
+**Full system access**
+- Manage all products, suppliers, and users
+- View all reports and analytics
+- Access to system settings
+- Complete audit trail access
+
+**Default Credentials:**
+- Username: `admin`
+- Password: `password123`
+
+### 🟢 Manager/User
+**Inventory management**
+- View and manage products
+- View stock movements
+- Generate reports
+- Limited user management
+
+**Default Credentials:**
+- Username: `manager`
+- Password: `password123`
+
+### 🟡 Staff
+**Basic operations**
+- View products
+- Update stock levels
+- View basic reports
+
+**Default Credentials:**
+- Username: `staff`
+- Password: `password123`
 
 ---
 
 ## 📁 Project Structure
 
 ```
-stockwise-inventory-system/
-├── index.html                          # Landing page
-├── README.md                           # Documentation
-├── TODO.md                             # Task tracking
-├── .gitignore                          # Git ignore rules
-├── css/
-│   └── light-theme.css                 # Unique mint green theme
-├── js/
-│   ├── database.js                     # Client-side database (localStorage)
-│   ├── dashboard-enhancements.js       # Advanced features
-│   ├── admin-dashboard-page.js         # Admin dashboard logic
-│   ├── user-dashboard-page.js          # User dashboard logic
-│   ├── products-page.js                # Product management
-│   ├── suppliers-page.js               # Supplier management
-│   ├── users-page.js                   # User management
-│   ├── stock-movement-page.js          # Stock tracking
-│   ├── reports-page.js                 # Reports generation
-│   ├── login-page.js                   # Authentication
-│   ├── register-page.js                # User registration
-│   ├── profile-page.js                 # User profile
-│   └── settings-page.js                # System settings
-└── pages/
-    ├── admin-dashboard.html            # Admin dashboard
-    ├── user-dashboard.html             # User dashboard
-    ├── login.html                      # Login page
-    ├── register.html                   # Registration page
-    ├── products.html                   # Product management
-    ├── suppliers.html                  # Supplier management
-    ├── users.html                      # User management (admin)
-    ├── stock-movement.html             # Stock tracking
-    ├── reports.html                    # Reports & analytics
-    ├── profile.html                    # User profile
-    └── settings.html                   # System settings
+stockwise/
+├── index.html                 # Landing page
+├── README.md                  # This file
+├── TODO.md                    # Development tasks
+├── .gitignore                 # Git ignore rules
+│
+├── css/                       # Stylesheets
+│   ├── light-theme.css       # Main theme
+│   └── mobile-fixes.css      # Mobile responsiveness
+│
+├── js/                        # JavaScript files
+│   ├── auth/
+│   │   └── authGuard.js      # Authentication guard
+│   ├── services/
+│   │   └── dataService.js    # Central data service
+│   ├── utils/
+│   │   └── uiUtils.js        # UI utilities
+│   ├── database.js           # Client-side database
+│   ├── login-page.js         # Login functionality
+│   ├── register-page.js      # Registration
+│   ├── admin-dashboard-page.js
+│   ├── user-dashboard-page.js
+│   ├── products-page.js
+│   ├── suppliers-page.js
+│   ├── users-page.js
+│   ├── reports-page.js
+│   ├── stock-movement-page.js
+│   ├── profile-page.js
+│   ├── settings-page.js
+│   └── dashboard-enhancements.js
+│
+├── pages/                     # HTML pages
+│   ├── login.html
+│   ├── register.html
+│   ├── admin-dashboard.html
+│   ├── user-dashboard.html
+│   ├── products.html
+│   ├── suppliers.html
+│   ├── users.html
+│   ├── reports.html
+│   ├── stock-movement.html
+│   ├── profile.html
+│   └── settings.html
+│
+├── components/                # Reusable components
+│   └── navbar.html           # Navigation component
+│
+└── database/                  # Database documentation
+    ├── schema.md             # Database schema
+    ├── sample-data.json      # Sample data
+    └── connection.php        # (Legacy - not used)
 ```
 
 ---
 
-## 🎨 Color Palette
+## 🛠️ Technology Stack
 
-### Primary Colors
-```css
---accent-primary: #5fb89a;      /* Mint Green - Primary actions */
---accent-secondary: #9b87d4;    /* Lavender - Secondary elements */
---accent-success: #6ec9a8;      /* Success states */
---accent-warning: #ffb088;      /* Warning states */
---accent-danger: #ff8b94;       /* Error states */
---accent-info: #7ec4cf;         /* Information */
-```
+### Frontend
+- **HTML5** - Semantic markup
+- **CSS3** - Modern styling with custom properties
+- **JavaScript (ES6+)** - Modern JavaScript features
+- **Bootstrap 5.3** - Responsive framework
+- **Font Awesome 6.0** - Icon library
+- **Chart.js 4.4** - Data visualization
 
-### Background Colors
-```css
---bg-primary: #fdfcf9;          /* Main background */
---bg-secondary: #f0f7f4;        /* Secondary background */
---bg-card: #ffffff;             /* Card background */
---bg-hover: #e8f5f0;            /* Hover states */
-```
+### Data Management
+- **localStorage API** - Client-side data persistence
+- **Custom Database Layer** - Abstraction over localStorage
+- **JSON** - Data format
 
-### Text Colors
-```css
---text-primary: #2d3436;        /* Primary text */
---text-secondary: #636e72;      /* Secondary text */
---text-muted: #95a5a6;          /* Muted text */
-```
+### Architecture
+- **MVC Pattern** - Separation of concerns
+- **Modular Design** - Reusable components
+- **Service Layer** - Centralized data access
+- **Guard System** - Route protection
 
 ---
 
-## 🚀 Getting Started
+## 📊 Key Features Explained
 
-### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- No server required - runs entirely in the browser!
+### 1. Dashboard
+- Real-time statistics
+- Visual charts and graphs
+- Recent activity feed
+- Low stock alerts
+- Quick action buttons
 
-### Installation
+### 2. Product Management
+- Add/Edit/Delete products
+- Category organization
+- Stock level tracking
+- Supplier assignment
+- Bulk operations
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/bhumit1311/stockwise-inventory-system.git
-   cd stockwise-inventory-system
-   ```
+### 3. Supplier Management
+- Supplier database
+- Contact information
+- Product associations
+- Status tracking
 
-2. **Open in browser**
-   - Simply open `index.html` in your web browser
-   - Or use a local server: `python -m http.server 8000`
+### 4. Reports & Analytics
+- Inventory reports
+- Supplier reports
+- Low stock reports
+- Stock movement history
+- Export functionality
 
-3. **Start using**
-   - Register a new account or use demo credentials
-   - Explore the dashboard and features!
-
-### Demo Credentials
-
-```
-Admin Account:
-Username: admin
-Password: password123
-
-Manager Account:
-Username: manager
-Password: password123
-
-Staff Account:
-Username: staff
-Password: password123
-
-User Account:
-Username: user
-Password: password123
-```
+### 5. User Management (Admin only)
+- Create/Edit users
+- Role assignment
+- Access control
+- Activity monitoring
 
 ---
 
-## 💡 Key Features
+## 🔐 Security Features
 
-### Client-Side Database
-- **No Backend Required**: Uses localStorage for data persistence
-- **Sample Data Included**: Pre-populated with demo products and suppliers
-- **Full CRUD Operations**: Complete database functionality
-- **Activity Logging**: Tracks all user actions
-- **Data Export/Import**: Backup and restore functionality
+1. **Authentication**
+   - Secure login system
+   - Password hashing (client-side demo)
+   - Session management
 
-### Real-Time Features
-- **Live Search**: Instant filtering as you type
-- **Auto-Save**: Changes saved immediately
-- **Notifications**: Toast notifications for actions
-- **Dynamic Updates**: UI updates in real-time
+2. **Authorization**
+   - Role-based access control
+   - Route protection
+   - Permission checking
 
-### User Experience
-- **Responsive Design**: Works on all devices
-- **Intuitive Navigation**: Easy to find features
-- **Keyboard Shortcuts**: Efficient navigation
-- **Form Validation**: Helpful error messages
-- **Loading States**: Clear feedback during operations
+3. **Session Management**
+   - Auto-expiry after 1 hour
+   - Remember me functionality
+   - Secure logout
+
+4. **Audit Trail**
+   - Activity logging
+   - User action tracking
+   - Timestamp recording
 
 ---
 
-## 📱 Responsive Design
+## 📱 Mobile Support
 
-### Breakpoints
-- **Mobile**: < 768px
-- **Tablet**: 768px - 992px
-- **Desktop**: 992px - 1200px
-- **Large Desktop**: > 1200px
+StockWise is fully responsive and optimized for:
+- 📱 Smartphones (iOS & Android)
+- 📱 Tablets
+- 💻 Desktops
+- 🖥️ Large screens
 
 ### Mobile Features
-- Touch-friendly interface
-- Collapsible navigation
+- Touch-optimized interface
+- Responsive navigation
 - Optimized layouts
-- Responsive tables
-- Mobile-first approach
+- Fast performance
+- Offline capability
 
 ---
 
-## 🔒 Security Features
+## 🎨 Customization
 
-- Password hashing (client-side demo)
-- Role-based access control
-- Session management
-- Activity logging
-- Secure authentication flow
+### Themes
+The system uses CSS custom properties for easy theming:
 
-**Note**: This is a demo application. For production use, implement proper server-side security.
+```css
+:root {
+    --bg-primary: #fdfcf9;
+    --accent-primary: #5fb89a;
+    --text-primary: #2d3436;
+    /* ... more variables */
+}
+```
 
----
-
-## 🐛 Browser Support
-
-### Fully Supported
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
-
-### Features Used
-- CSS Grid & Flexbox
-- CSS Variables
-- LocalStorage API
-- ES6+ JavaScript
-- Bootstrap 5
+### Adding New Features
+1. Create new page in `pages/`
+2. Create corresponding JS file in `js/`
+3. Add route to navigation
+4. Update permissions in `authGuard.js`
 
 ---
 
-## 🎯 Performance
+## 📈 Future Enhancements
 
-### Optimizations
-- Minimal dependencies
-- Efficient DOM manipulation
-- Debounced search
-- Lazy loading
-- Optimized animations
-- Clean, maintainable code
+### Planned Features
+- [ ] Backend integration (Node.js/PHP)
+- [ ] Real database (MySQL/PostgreSQL)
+- [ ] Barcode scanning
+- [ ] Email notifications
+- [ ] Multi-warehouse support
+- [ ] Advanced analytics
+- [ ] API integration
+- [ ] Mobile app (React Native)
+- [ ] Print labels
+- [ ] Batch operations
+
+### Backend Integration Roadmap
+1. Set up Node.js/Express server
+2. Implement MySQL database
+3. Create REST API endpoints
+4. Add JWT authentication
+5. Implement file uploads
+6. Add email service
+7. Deploy to cloud
+
+---
+
+## 🐛 Known Issues
+
+1. **Browser Storage Limit** - localStorage has ~5-10MB limit
+2. **No Real-time Sync** - Data is local to each browser
+3. **Demo Password Hashing** - Use proper server-side hashing in production
 
 ---
 
@@ -281,53 +321,59 @@ Contributions are welcome! Please follow these steps:
 
 ---
 
-## 📄 License
+## 📝 License
 
-This project is open source and available under the MIT License.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**StockWise Team**
+- Website: [stockwise.com](https://stockwise.com)
+- Email: support@stockwise.com
 
 ---
 
 ## 🙏 Acknowledgments
 
-- **Bootstrap 5**: Responsive framework
-- **Font Awesome 6**: Icon library
-- **Google Fonts**: Typography
+- Bootstrap team for the amazing framework
+- Font Awesome for the icon library
+- Chart.js for data visualization
+- All contributors and testers
 
 ---
 
 ## 📞 Support
 
-For issues, questions, or suggestions:
-- 🐛 [Report a Bug](https://github.com/bhumit1311/stockwise-inventory-system/issues)
-- 💡 [Request a Feature](https://github.com/bhumit1311/stockwise-inventory-system/issues)
-- 📧 Contact: bhumitvaghela71@gmail.com
+For support, email support@stockwise.com or open an issue on GitHub.
 
 ---
 
-## 🎉 What Makes This Special
+## 🔄 Version History
 
-### Unique Design
-- **Not Another Blue Theme**: Fresh mint green palette
-- **Professional Yet Friendly**: Perfect balance
-- **Modern & Clean**: Contemporary design language
-- **Attention to Detail**: Polished interactions
-
-### Complete Solution
-- **No Backend Needed**: Runs entirely in browser
-- **Sample Data Included**: Ready to explore
-- **Full Feature Set**: Everything you need
-- **Well Documented**: Easy to understand and modify
-
-### Production Ready
-- **Clean Code**: Well-organized and commented
-- **Best Practices**: Modern development standards
-- **Responsive**: Works everywhere
-- **Accessible**: WCAG compliant colors
+### v1.0.0 (2026-01-29)
+- ✨ Initial release
+- ✅ Core inventory management
+- ✅ User authentication
+- ✅ Reports and analytics
+- ✅ Mobile responsive design
+- ✅ Complete documentation
 
 ---
 
-**Built with 💚 for modern inventory management**
+## 🎯 Demo Credentials
 
-*Repository: https://github.com/bhumit1311/stockwise-inventory-system*
+| Role | Username | Password | Access Level |
+|------|----------|----------|--------------|
+| Admin | `admin` | `password123` | Full Access |
+| Manager | `manager` | `password123` | Inventory Management |
+| Staff | `staff` | `password123` | Basic Operations |
 
-*Last Updated: January 27, 2026*
+---
+
+**⭐ If you find this project useful, please consider giving it a star on GitHub!**
+
+---
+
+Made with ❤️ by the StockWise Team

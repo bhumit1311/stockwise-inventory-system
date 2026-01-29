@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StockWise Admin Dashboard - Manage your inventory, suppliers, and users">
+    <meta name="keywords" content="admin dashboard, inventory management, stock control">
     <title>Admin Dashboard - StockWise</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../css/light-theme.css" rel="stylesheet">
+    <link href="../css/mobile-fixes.css" rel="stylesheet">
 </head>
 <body class="bg-light">
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="../index.html">
-                <i class="fas fa-boxes me-2"></i>StockWise
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand fw-bold" href="../index.html">
+                    <i class="fas fa-boxes me-2"></i>StockWise
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
@@ -70,12 +74,13 @@
                         </ul>
                     </li>
                 </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Main Content -->
-    <div class="container-fluid py-4">
+    <main class="container-fluid py-4" role="main">
         <!-- Welcome Section -->
         <div class="row mb-4">
             <div class="col-12">
@@ -238,19 +243,22 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- StockWise Database -->
+    <!-- StockWise Core -->
     <script src="../js/database.js"></script>
+    <script src="../js/auth/authGuard.js"></script>
+    <script src="../js/services/dataService.js"></script>
+    <script src="../js/utils/uiUtils.js"></script>
     
     <!-- Dashboard Enhancements -->
     <script src="../js/dashboard-enhancements.js"></script>
     
     <!-- Dashboard JavaScript -->
-    <script src="../js\admin-dashboard-page.js"></script>
+    <script src="../js/admin-dashboard-page.js"></script>
 
     <style>
         .activity-item {
