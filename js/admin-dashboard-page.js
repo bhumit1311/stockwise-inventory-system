@@ -10,17 +10,13 @@
         });
 
         function checkAuthentication() {
-            const user = StockWiseDB.getCurrentUser();
+            // Use AuthManager for unified auth check
+            const user = typeof AuthManager !== 'undefined'
+                ? AuthManager.requireAuth('admin', 'login.html')
+                : StockWiseDB.getCurrentUser();
+            
             if (!user) {
-                window.location.href = 'login.html';
-                return;
-            }
-
-            // Check if user has admin role
-            if (user.role !== 'admin') {
-                alert('Access denied. Admin privileges required.');
-                window.location.href = 'user-dashboard.html';
-                return;
+                return; // AuthManager handles redirect
             }
 
             // Update UI with user info
@@ -193,7 +189,12 @@
             document.getElementById('logoutBtn').addEventListener('click', function(e) {
                 e.preventDefault();
                 if (confirm('Are you sure you want to logout?')) {
-                    StockWiseDB.logoutUser();
+                    // Use AuthManager for proper logout (preserves app identity)
+                    if (typeof AuthManager !== 'undefined') {
+                        AuthManager.clearSession('User logout');
+                    } else {
+                        StockWiseDB.logoutUser();
+                    }
                     window.location.href = '../index.html';
                 }
             });

@@ -299,10 +299,9 @@
     justify-content: center;
 }
 
-/* Fix chart responsiveness */
+/* Charts maintain fixed size - no auto-resizing */
 canvas {
     max-width: 100%;
-    height: auto !important;
 }
 
 /* Fix table overflow on mobile */

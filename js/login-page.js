@@ -97,13 +97,13 @@
 
         // ===== AUTHENTICATION FUNCTIONS =====
         function checkExistingLogin() {
-            const userData = localStorage.getItem('stockwise_user');
-            if (userData) {
-                const user = JSON.parse(userData);
+            // Use AuthManager for unified auth check
+            if (typeof AuthManager !== 'undefined' && AuthManager.isAuthenticated()) {
+                const user = AuthManager.getCurrentUser();
                 showAlert(`You are already logged in as ${user.username}. Redirecting...`, 'info');
                 
                 setTimeout(() => {
-                    redirectToDashboard(user.role);
+                    AuthManager.handlePostLoginRedirect();
                 }, 2000);
             }
         }
@@ -177,28 +177,34 @@
             const user = StockWiseDB.authenticateUser(username, password);
             
             if (user) {
-                // Create session using AuthGuard
-                if (typeof AuthGuard !== 'undefined') {
-                    AuthGuard.createSession(user, rememberMe);
+                // CRITICAL: Use AuthManager for unified session management
+                if (typeof AuthManager !== 'undefined') {
+                    AuthManager.createSession(user, rememberMe);
                 } else {
-                    // Fallback to old method
-                    if (rememberMe) {
-                        localStorage.setItem('stockwise_user', JSON.stringify(user));
-                    } else {
-                        sessionStorage.setItem('stockwise_user', JSON.stringify(user));
-                    }
+                    console.error('AuthManager not loaded!');
+                    // Fallback - should not happen
+                    localStorage.setItem('stockwise_auth_state', JSON.stringify({
+                        user: user,
+                        createdAt: Date.now(),
+                        expiresAt: Date.now() + (60 * 60 * 1000),
+                        rememberMe: rememberMe
+                    }));
                 }
                 
-                // Show success message with UIUtils if available
+                // Show success message
                 if (typeof UIUtils !== 'undefined') {
                     UIUtils.showToast('Login successful! Redirecting...', 'success', 2000);
                 } else {
                     showAlert('Login successful! Redirecting to dashboard...', 'success');
                 }
                 
-                // Redirect to appropriate dashboard
+                // Redirect using AuthManager
                 setTimeout(() => {
-                    redirectToDashboard(user.role);
+                    if (typeof AuthManager !== 'undefined') {
+                        AuthManager.handlePostLoginRedirect();
+                    } else {
+                        redirectToDashboard(user.role);
+                    }
                 }, 1500);
                 
             } else {

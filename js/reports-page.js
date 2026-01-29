@@ -10,10 +10,13 @@
         });
 
         function checkAuthentication() {
-            const user = StockWiseDB.getCurrentUser();
+            // Use AuthManager for unified auth check
+            const user = typeof AuthManager !== 'undefined'
+                ? AuthManager.requireAuth(null, 'login.html')
+                : StockWiseDB.getCurrentUser();
+            
             if (!user) {
-                window.location.href = 'login.html';
-                return;
+                return; // AuthManager handles redirect
             }
 
             document.getElementById('currentUsername').textContent = user.username;
@@ -354,7 +357,12 @@
             document.getElementById('logoutBtn').addEventListener('click', function(e) {
                 e.preventDefault();
                 if (confirm('Are you sure you want to logout?')) {
-                    StockWiseDB.logoutUser();
+                    // Use AuthManager for proper logout (preserves app identity)
+                    if (typeof AuthManager !== 'undefined') {
+                        AuthManager.clearSession('User logout');
+                    } else {
+                        StockWiseDB.logoutUser();
+                    }
                     window.location.href = '../index.html';
                 }
             });

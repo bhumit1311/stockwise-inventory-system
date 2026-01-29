@@ -566,3 +566,18 @@ body {
     background: var(--bg-primary);
     border-top: 1px solid var(--border-color);
 }
+/* Gradient backgrounds for dashboard headers */
+.bg-gradient-dark {
+    background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%) !important;
+    color: #ffffff !important;
+}
+
+.bg-gradient-dark .card-title,
+.bg-gradient-dark .card-text,
+.bg-gradient-dark h1,
+.bg-gradient-dark h2,
+.bg-gradient-dark h3,
+.bg-gradient-dark p,
+.bg-gradient-dark span {
+    color: #ffffff !important;
+}
