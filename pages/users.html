@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../css/light-theme.css" rel="stylesheet">
 </head>
+
 <body class="bg-light">
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="../index.html">
                 <i class="fas fa-boxes me-2"></i>StockWise
@@ -53,15 +55,17 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="profile.html">
-                                <i class="fas fa-user-cog me-2"></i>Profile
-                            </a></li>
+                                    <i class="fas fa-user-cog me-2"></i>Profile
+                                </a></li>
                             <li><a class="dropdown-item" href="settings.html">
-                                <i class="fas fa-cog me-2"></i>Settings
-                            </a></li>
-                            <li><hr class="dropdown-divider"></li>
+                                    <i class="fas fa-cog me-2"></i>Settings
+                                </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">
-                                <i class="fas fa-sign-out-alt me-2"></i>Logout
-                            </a></li>
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -79,7 +83,8 @@
                         <h2><i class="fas fa-users me-2"></i>Users Management</h2>
                         <p class="text-muted mb-0">Manage system users and permissions</p>
                     </div>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal" onclick="openAddUserModal()">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal"
+                        onclick="openAddUserModal()">
                         <i class="fas fa-user-plus me-2"></i>Add User
                     </button>
                 </div>
@@ -144,7 +149,8 @@
                                 <label class="form-label">Search Users</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                    <input type="text" class="form-control" id="searchInput" placeholder="Search by name, username, or email...">
+                                    <input type="text" class="form-control" id="searchInput"
+                                        placeholder="Search by name, username, or email...">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -297,10 +303,11 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- StockWise Database -->
     <script src="../js/database.js"></script>
-    
+    <script src="../js/core/authManager.js"></script>
+
     <!-- Users Page JavaScript -->
     <script src="../js\users-page.js"></script>
 
@@ -316,4 +323,5 @@
         }
     </style>
 </body>
+
 </html>

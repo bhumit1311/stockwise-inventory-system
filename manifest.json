@@ -2,12 +2,12 @@
   "name": "StockWise - Inventory Management System",
   "short_name": "StockWise",
   "description": "Professional inventory management system with real-time tracking and comprehensive reporting",
-  "start_url": "/index.html",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#fdfcf9",
   "theme_color": "#5fb89a",
   "orientation": "any",
-  "scope": "/",
+  "scope": "./",
   "icons": [
     {
       "src": "assets/icon-72x72.png",

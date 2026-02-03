@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,9 +13,10 @@
     <link href="../css/mobile-fixes.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
+
 <body class="bg-light">
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
         <div class="container-fluid">
             <span class="navbar-brand fw-bold">
                 <i class="fas fa-boxes me-2"></i>StockWise
@@ -52,15 +54,17 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="profile.html">
-                                <i class="fas fa-user-cog me-2"></i>Profile
-                            </a></li>
+                                    <i class="fas fa-user-cog me-2"></i>Profile
+                                </a></li>
                             <li><a class="dropdown-item" href="settings.html">
-                                <i class="fas fa-cog me-2"></i>Settings
-                            </a></li>
-                            <li><hr class="dropdown-divider"></li>
+                                    <i class="fas fa-cog me-2"></i>Settings
+                                </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">
-                                <i class="fas fa-sign-out-alt me-2"></i>Logout
-                            </a></li>
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -73,7 +77,8 @@
         <!-- Page Header -->
         <div class="row mb-4">
             <div class="col-12">
-                <div class="card text-white" style="background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%) !important; color: #ffffff !important;">
+                <div class="card text-white"
+                    style="background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%) !important; color: #ffffff !important;">
                     <div class="card-body" style="background: transparent !important;">
                         <h2 class="card-title mb-2" style="color: #ffffff !important; font-weight: bold;">
                             <i class="fas fa-chart-line me-2" style="color: #ffffff !important;"></i>Reports & Analytics
@@ -143,7 +148,7 @@
                         <div class="feature-icon bg-success mb-3">
                             <i class="fas fa-dollar-sign text-white"></i>
                         </div>
-                        <h3 class="text-success" id="totalValue">0</h3>           
+                        <h3 class="text-success" id="totalValue">0</h3>
                         <p class="text-muted mb-0">Total Inventory Value</p>
                     </div>
                 </div>
@@ -170,33 +175,33 @@
                     </div>
                 </div>
             </div>
-<!-- Charts Section -->
-        <div class="row mb-4">
-            <div class="col-lg-6 mb-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <i class="fas fa-chart-pie me-2"></i>Stock by Category
-                        </h5>
+            <!-- Charts Section -->
+            <div class="row mb-4">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-chart-pie me-2"></i>Stock by Category
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="categoryChart" height="300"></canvas>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <canvas id="categoryChart" height="300"></canvas>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">
+                                <i class="fas fa-chart-bar me-2"></i>Stock Value by Category
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="valueChart" height="300"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 mb-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mb-0">
-                            <i class="fas fa-chart-bar me-2"></i>Stock Value by Category
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="valueChart" height="300"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
         </div>
 
         <!-- Report Content -->
@@ -231,23 +236,27 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- StockWise Core - CRITICAL: Load AuthManager FIRST -->
     <script src="../js/database.js"></script>
     <script src="../js/core/authManager.js"></script>
     <script src="../js/auth/authGuard.js"></script>
     <script src="../js/services/dataService.js"></script>
     <script src="../js/utils/uiUtils.js"></script>
-    
+
     <!-- Reports JavaScript -->
     <script src="../js/reports-page.js"></script>
 
     <style>
         @media print {
-            .navbar, .btn, .card-header button {
+
+            .navbar,
+            .btn,
+            .card-header button {
                 display: none !important;
             }
         }
     </style>
 </body>
+
 </html>

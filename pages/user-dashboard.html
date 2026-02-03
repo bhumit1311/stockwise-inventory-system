@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../css/light-theme.css" rel="stylesheet">
 </head>
+
 <body class="bg-light">
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand fw-bold" href="../index.html">
                 <i class="fas fa-boxes me-2"></i>StockWise
@@ -48,15 +50,17 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="profile.html">
-                                <i class="fas fa-user-cog me-2"></i>Profile
-                            </a></li>
+                                    <i class="fas fa-user-cog me-2"></i>Profile
+                                </a></li>
                             <li><a class="dropdown-item" href="settings.html">
-                                <i class="fas fa-cog me-2"></i>Settings
-                            </a></li>
-                            <li><hr class="dropdown-divider"></li>
+                                    <i class="fas fa-cog me-2"></i>Settings
+                                </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">
-                                <i class="fas fa-sign-out-alt me-2"></i>Logout
-                            </a></li>
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -69,18 +73,19 @@
         <!-- Welcome Section -->
         <div class="row mb-4">
             <div class="col-12">
-                <div class="card bg-gradient-dark text-white">
-                    <div class="card-body">
-                        <h2 class="card-title mb-2">
-                            <i class="fas fa-user me-2"></i>
-                            Welcome back, <span id="welcomeUsername">User</span>!
+                <div class="card text-white"
+                    style="background: linear-gradient(135deg, #2d3436 0%, #1a1a1a 100%) !important; color: #ffffff !important;">
+                    <div class="card-body" style="background: transparent !important;">
+                        <h2 class="card-title mb-2" style="color: #ffffff !important; font-weight: bold;">
+                            <i class="fas fa-user me-2" style="color: #ffffff !important;"></i>
+                            Welcome back, <span id="welcomeUsername" style="color: #ffffff !important;">User</span>!
                         </h2>
-                        <p class="card-text mb-0">
-                            <i class="fas fa-calendar me-2"></i>
-                            Today is <span id="currentDate"></span>
+                        <p class="card-text mb-0" style="color: #ffffff !important;">
+                            <i class="fas fa-calendar me-2" style="color: #ffffff !important;"></i>
+                            Today is <span id="currentDate" style="color: #ffffff !important;"></span>
                         </p>
-                        <p class="card-text mb-0">
-                            <i class="fas fa-user-tag me-2"></i>
+                        <p class="card-text mb-0 mt-2" style="color: #ffffff !important;">
+                            <i class="fas fa-user-tag me-2" style="color: #ffffff !important;"></i>
                             Role: <span id="userRole" class="badge bg-primary">User</span>
                         </p>
                     </div>
@@ -239,15 +244,19 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- StockWise Database -->
+
+    <!-- StockWise Core -->
     <script src="../js/database.js"></script>
-    
+    <script src="../js/core/authManager.js"></script>
+    <script src="../js/auth/authGuard.js"></script>
+    <script src="../js/services/dataService.js"></script>
+    <script src="../js/utils/uiUtils.js"></script>
+
     <!-- Dashboard Enhancements -->
     <script src="../js/dashboard-enhancements.js"></script>
-    
+
     <!-- Dashboard JavaScript -->
-    <script src="../js\user-dashboard-page.js"></script>
+    <script src="../js/user-dashboard-page.js"></script>
 
     <style>
         .feature-icon {
@@ -259,15 +268,16 @@
             justify-content: center;
             margin: 0 auto;
         }
-        
+
         .alert-list .alert:last-child {
             margin-bottom: 0;
         }
-        
+
         .table th {
             border-top: none;
             font-weight: 600;
         }
     </style>
 </body>
+
 </html>

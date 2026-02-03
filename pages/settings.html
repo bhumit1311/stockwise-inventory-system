@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../css/light-theme.css" rel="stylesheet">
 </head>
+
 <body class="bg-light">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <i class="fas fa-boxes me-2"></i>StockWise
@@ -53,20 +55,23 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown">
                             <i class="fas fa-user me-1"></i><span id="currentUserName">User</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="profile.html">
-                                <i class="fas fa-user-edit me-2"></i>Profile
-                            </a></li>
+                                    <i class="fas fa-user-edit me-2"></i>Profile
+                                </a></li>
                             <li><a class="dropdown-item active" href="settings.html">
-                                <i class="fas fa-cog me-2"></i>Settings
-                            </a></li>
-                            <li><hr class="dropdown-divider"></li>
+                                    <i class="fas fa-cog me-2"></i>Settings
+                                </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#" onclick="logout()">
-                                <i class="fas fa-sign-out-alt me-2"></i>Logout
-                            </a></li>
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                                </a></li>
                         </ul>
                     </li>
                 </ul>
@@ -103,7 +108,8 @@
                         <form id="generalSettingsForm">
                             <div class="mb-3">
                                 <label for="companyName" class="form-label">Company Name</label>
-                                <input type="text" class="form-control" id="companyName" placeholder="Enter company name">
+                                <input type="text" class="form-control" id="companyName"
+                                    placeholder="Enter company name">
                             </div>
                             <div class="mb-3">
                                 <label for="currency" class="form-label">Default Currency</label>
@@ -167,12 +173,15 @@
                         <form id="inventorySettingsForm">
                             <div class="mb-3">
                                 <label for="lowStockThreshold" class="form-label">Low Stock Alert Threshold (%)</label>
-                                <input type="number" class="form-control" id="lowStockThreshold" min="1" max="100" value="20">
-                                <div class="form-text">Alert when stock falls below this percentage of minimum stock level</div>
+                                <input type="number" class="form-control" id="lowStockThreshold" min="1" max="100"
+                                    value="20">
+                                <div class="form-text">Alert when stock falls below this percentage of minimum stock
+                                    level</div>
                             </div>
                             <div class="mb-3">
                                 <label for="autoReorderPoint" class="form-label">Auto Reorder Point (%)</label>
-                                <input type="number" class="form-control" id="autoReorderPoint" min="1" max="100" value="10">
+                                <input type="number" class="form-control" id="autoReorderPoint" min="1" max="100"
+                                    value="10">
                                 <div class="form-text">Suggest reordering when stock falls below this percentage</div>
                             </div>
                             <div class="mb-3">
@@ -368,7 +377,8 @@
                     </div>
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle me-2"></i>
-                        <strong>Warning:</strong> Importing data will overwrite existing data. Make sure to backup first.
+                        <strong>Warning:</strong> Importing data will overwrite existing data. Make sure to backup
+                        first.
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -392,7 +402,8 @@
                 <div class="modal-body">
                     <div class="alert alert-danger">
                         <i class="fas fa-exclamation-triangle me-2"></i>
-                        <strong>Danger!</strong> This action will permanently delete all data including products, suppliers, users, and activity logs. This cannot be undone.
+                        <strong>Danger!</strong> This action will permanently delete all data including products,
+                        suppliers, users, and activity logs. This cannot be undone.
                     </div>
                     <p>Type <strong>RESET</strong> to confirm:</p>
                     <input type="text" class="form-control" id="resetConfirmation" placeholder="Type RESET to confirm">
@@ -409,26 +420,29 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/database.js"></script>
-    <script src="../js\settings-page.js"></script>
+    <script src="../js/core/authManager.js"></script>
+    <script src="../js/settings-page.js"></script>
 
     <style>
         .card {
             border: none;
             border-radius: 10px;
         }
-        
+
         .card-header {
             border-radius: 10px 10px 0 0 !important;
         }
-        
-        .form-control:focus, .form-select:focus {
+
+        .form-control:focus,
+        .form-select:focus {
             border-color: #0d6efd;
             box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
         }
-        
+
         .btn-lg {
             padding: 0.75rem 2rem;
         }
     </style>
 </body>
+
 </html>

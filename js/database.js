@@ -92,7 +92,7 @@ class ClientDatabase {
                     last_login: null
                 }
             ];
-            
+
             localStorage.setItem(DB_CONFIG.tables.users, JSON.stringify(defaultUsers));
         }
 
@@ -106,7 +106,7 @@ class ClientDatabase {
                 { id: this.generateId(), name: 'Home & Garden', description: 'Home improvement and garden supplies', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), name: 'Sports', description: 'Sports equipment and accessories', status: 'active', created_at: new Date().toISOString() }
             ];
-            
+
             localStorage.setItem(DB_CONFIG.tables.categories, JSON.stringify(defaultCategories));
         }
 
@@ -175,16 +175,18 @@ class ClientDatabase {
                     created_at: new Date().toISOString()
                 }
             ];
-            
+
             localStorage.setItem(DB_CONFIG.tables.suppliers, JSON.stringify(defaultSuppliers));
         }
 
-        // Initialize products if empty
+        // Initialize products if empty or missing new data
         const products = this.getAll('products');
-        if (products.length === 0) {
+        const hasNewProducts = products.some(p => p.product_code === 'ELEC-010');
+
+        if (products.length === 0 || !hasNewProducts) {
             const categories_list = this.getAll('categories');
             const suppliers_list = this.getAll('suppliers');
-            
+
             const defaultProducts = [
                 // Electronics
                 { id: this.generateId(), product_name: 'Laptop Dell Inspiron 15', product_code: 'ELEC-001', category: categories_list[0]?.name || 'Electronics', supplier_id: suppliers_list[0]?.id, unit_price: 45000, current_stock: 25, minimum_stock: 5, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
@@ -195,45 +197,53 @@ class ClientDatabase {
                 { id: this.generateId(), product_name: 'Webcam HD 1080p', product_code: 'ELEC-006', category: categories_list[0]?.name || 'Electronics', supplier_id: suppliers_list[0]?.id, unit_price: 4500, current_stock: 22, minimum_stock: 8, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Wireless Headphones', product_code: 'ELEC-007', category: categories_list[0]?.name || 'Electronics', supplier_id: suppliers_list[0]?.id, unit_price: 2800, current_stock: 6, minimum_stock: 12, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'External SSD 1TB', product_code: 'ELEC-008', category: categories_list[0]?.name || 'Electronics', supplier_id: suppliers_list[0]?.id, unit_price: 8500, current_stock: 15, minimum_stock: 5, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
-                
+
                 // Clothing
                 { id: this.generateId(), product_name: 'Cotton T-Shirt Blue', product_code: 'CLTH-001', category: categories_list[1]?.name || 'Clothing', supplier_id: suppliers_list[1]?.id, unit_price: 500, current_stock: 100, minimum_stock: 30, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Denim Jeans Regular Fit', product_code: 'CLTH-002', category: categories_list[1]?.name || 'Clothing', supplier_id: suppliers_list[1]?.id, unit_price: 1200, current_stock: 65, minimum_stock: 20, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Formal Shirt White', product_code: 'CLTH-003', category: categories_list[1]?.name || 'Clothing', supplier_id: suppliers_list[1]?.id, unit_price: 800, current_stock: 45, minimum_stock: 15, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Sports Shoes Running', product_code: 'CLTH-004', category: categories_list[1]?.name || 'Clothing', supplier_id: suppliers_list[1]?.id, unit_price: 2500, current_stock: 7, minimum_stock: 15, unit: 'pair', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Winter Jacket Black', product_code: 'CLTH-005', category: categories_list[1]?.name || 'Clothing', supplier_id: suppliers_list[1]?.id, unit_price: 3500, current_stock: 28, minimum_stock: 10, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
-                
+
                 // Books
                 { id: this.generateId(), product_name: 'JavaScript Complete Guide', product_code: 'BOOK-001', category: categories_list[2]?.name || 'Books', supplier_id: suppliers_list[2]?.id, unit_price: 800, current_stock: 30, minimum_stock: 10, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Python for Beginners', product_code: 'BOOK-002', category: categories_list[2]?.name || 'Books', supplier_id: suppliers_list[2]?.id, unit_price: 750, current_stock: 25, minimum_stock: 8, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Data Structures & Algorithms', product_code: 'BOOK-003', category: categories_list[2]?.name || 'Books', supplier_id: suppliers_list[2]?.id, unit_price: 950, current_stock: 18, minimum_stock: 8, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Web Development Handbook', product_code: 'BOOK-004', category: categories_list[2]?.name || 'Books', supplier_id: suppliers_list[2]?.id, unit_price: 850, current_stock: 22, minimum_stock: 10, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
-                
+
                 // Home & Garden
                 { id: this.generateId(), product_name: 'LED Desk Lamp', product_code: 'HOME-001', category: categories_list[3]?.name || 'Home & Garden', supplier_id: suppliers_list[0]?.id, unit_price: 1200, current_stock: 40, minimum_stock: 15, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Office Chair Ergonomic', product_code: 'HOME-002', category: categories_list[3]?.name || 'Home & Garden', supplier_id: suppliers_list[0]?.id, unit_price: 8500, current_stock: 12, minimum_stock: 5, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Standing Desk Adjustable', product_code: 'HOME-003', category: categories_list[3]?.name || 'Home & Garden', supplier_id: suppliers_list[0]?.id, unit_price: 15000, current_stock: 8, minimum_stock: 3, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Wall Clock Digital', product_code: 'HOME-004', category: categories_list[3]?.name || 'Home & Garden', supplier_id: suppliers_list[0]?.id, unit_price: 1500, current_stock: 25, minimum_stock: 10, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
-                
+
                 // Sports
                 { id: this.generateId(), product_name: 'Yoga Mat Premium', product_code: 'SPRT-001', category: categories_list[4]?.name || 'Sports', supplier_id: suppliers_list[1]?.id, unit_price: 1200, current_stock: 35, minimum_stock: 15, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
                 { id: this.generateId(), product_name: 'Dumbbell Set 20kg', product_code: 'SPRT-002', category: categories_list[4]?.name || 'Sports', supplier_id: suppliers_list[1]?.id, unit_price: 3500, current_stock: 5, minimum_stock: 8, unit: 'set', status: 'active', created_at: new Date().toISOString() },
-                { id: this.generateId(), product_name: 'Resistance Bands Set', product_code: 'SPRT-003', category: categories_list[4]?.name || 'Sports', supplier_id: suppliers_list[1]?.id, unit_price: 800, current_stock: 42, minimum_stock: 20, unit: 'set', status: 'active', created_at: new Date().toISOString() }
+                { id: this.generateId(), product_name: 'Resistance Bands Set', product_code: 'SPRT-003', category: categories_list[4]?.name || 'Sports', supplier_id: suppliers_list[1]?.id, unit_price: 800, current_stock: 42, minimum_stock: 20, unit: 'set', status: 'active', created_at: new Date().toISOString() },
+                { id: this.generateId(), product_name: 'Smart Watch Series 5', product_code: 'ELEC-009', category: categories_list[0]?.name || 'Electronics', supplier_id: suppliers_list[0]?.id, unit_price: 12000, current_stock: 3, minimum_stock: 10, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
+                { id: this.generateId(), product_name: 'Cotton Hoodie Grey', product_code: 'CLTH-006', category: categories_list[1]?.name || 'Clothing', supplier_id: suppliers_list[1]?.id, unit_price: 1500, current_stock: 40, minimum_stock: 15, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
+                { id: this.generateId(), product_name: 'The AI Revolution', product_code: 'BOOK-005', category: categories_list[2]?.name || 'Books', supplier_id: suppliers_list[2]?.id, unit_price: 1200, current_stock: 0, minimum_stock: 5, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
+                { id: this.generateId(), product_name: 'Ceramic Plant Pot', product_code: 'HOME-005', category: categories_list[3]?.name || 'Home & Garden', supplier_id: suppliers_list[0]?.id, unit_price: 450, current_stock: 60, minimum_stock: 20, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
+                { id: this.generateId(), product_name: 'Pro Tennis Racket', product_code: 'SPRT-004', category: categories_list[4]?.name || 'Sports', supplier_id: suppliers_list[1]?.id, unit_price: 8500, current_stock: 4, minimum_stock: 8, unit: 'piece', status: 'active', created_at: new Date().toISOString() },
+                { id: this.generateId(), product_name: 'Tablet 10-inch', product_code: 'ELEC-010', category: categories_list[0]?.name || 'Electronics', supplier_id: suppliers_list[0]?.id, unit_price: 18000, current_stock: 15, minimum_stock: 5, unit: 'piece', status: 'active', created_at: new Date().toISOString() }
             ];
-            
+
             localStorage.setItem(DB_CONFIG.tables.products, JSON.stringify(defaultProducts));
         }
 
-        // Initialize stock logs if empty
+        // Initialize stock logs if empty or missing new data
         const stockLogs = this.getAll('stock_logs');
-        if (stockLogs.length === 0) {
+        const hasNewLogs = stockLogs.length > 25; // Simple check for updated logs
+
+        if (stockLogs.length === 0 || !hasNewLogs) {
             const products_list = this.getAll('products');
-            
+
             const users_list = this.getAll('users');
             const adminUser = users_list.find(u => u.role === 'admin');
             const staffUser = users_list.find(u => u.role === 'staff');
             const managerUser = users_list.find(u => u.role === 'user' && u.username === 'manager');
-            
+
             const defaultStockLogs = [
                 // Recent stock movements
                 { id: this.generateId(), product_id: products_list[0]?.id, transaction_type: 'in', quantity: 10, previous_stock: 15, new_stock: 25, reference: 'PO-2026-001', reason: 'purchase', notes: 'New stock arrival from supplier', created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), user_id: adminUser?.id },
@@ -260,9 +270,20 @@ class ClientDatabase {
                 { id: this.generateId(), product_id: products_list[21]?.id, transaction_type: 'in', quantity: 30, previous_stock: 5, new_stock: 35, reference: 'PO-2026-012', reason: 'purchase', notes: 'Yoga mats bulk order', created_at: new Date(Date.now() - 22 * 24 * 60 * 60 * 1000).toISOString(), user_id: managerUser?.id },
                 { id: this.generateId(), product_id: products_list[22]?.id, transaction_type: 'out', quantity: 4, previous_stock: 9, new_stock: 5, reference: 'SO-2026-011', reason: 'sale', notes: 'Dumbbell sets sold', created_at: new Date(Date.now() - 23 * 24 * 60 * 60 * 1000).toISOString(), user_id: staffUser?.id },
                 { id: this.generateId(), product_id: products_list[23]?.id, transaction_type: 'in', quantity: 20, previous_stock: 22, new_stock: 42, reference: 'PO-2026-013', reason: 'purchase', notes: 'Resistance bands stock', created_at: new Date(Date.now() - 24 * 24 * 60 * 60 * 1000).toISOString(), user_id: adminUser?.id },
-                { id: this.generateId(), product_id: products_list[0]?.id, transaction_type: 'out', quantity: 5, previous_stock: 30, new_stock: 25, reference: 'SO-2026-012', reason: 'sale', notes: 'Dell laptops corporate sale', created_at: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000).toISOString(), user_id: staffUser?.id }
+                { id: this.generateId(), product_id: products_list[0]?.id, transaction_type: 'out', quantity: 5, previous_stock: 30, new_stock: 25, reference: 'SO-2026-012', reason: 'sale', notes: 'Dell laptops corporate sale', created_at: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000).toISOString(), user_id: staffUser?.id },
+                // Logs for new products
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'ELEC-009')?.id, transaction_type: 'in', quantity: 5, previous_stock: 0, new_stock: 5, reference: 'PO-2026-014', reason: 'purchase', notes: 'Smart Watch initial stock', created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), user_id: adminUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'ELEC-009')?.id, transaction_type: 'out', quantity: 2, previous_stock: 5, new_stock: 3, reference: 'SO-2026-013', reason: 'sale', notes: 'Smart Watch customer sale', created_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), user_id: staffUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'CLTH-006')?.id, transaction_type: 'in', quantity: 50, previous_stock: 0, new_stock: 50, reference: 'PO-2026-015', reason: 'purchase', notes: 'Hoodies season stock', created_at: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(), user_id: managerUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'CLTH-006')?.id, transaction_type: 'out', quantity: 10, previous_stock: 50, new_stock: 40, reference: 'SO-2026-014', reason: 'sale', notes: 'Hoodies bulk order', created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), user_id: staffUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'BOOK-005')?.id, transaction_type: 'in', quantity: 10, previous_stock: 0, new_stock: 10, reference: 'PO-2026-016', reason: 'purchase', notes: 'AI Books received', created_at: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(), user_id: adminUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'BOOK-005')?.id, transaction_type: 'out', quantity: 10, previous_stock: 10, new_stock: 0, reference: 'SO-2026-015', reason: 'sale', notes: 'Sold out quickly', created_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), user_id: staffUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'HOME-005')?.id, transaction_type: 'in', quantity: 60, previous_stock: 0, new_stock: 60, reference: 'PO-2026-017', reason: 'purchase', notes: 'Plant pots arrival', created_at: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(), user_id: managerUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'SPRT-004')?.id, transaction_type: 'in', quantity: 5, previous_stock: 0, new_stock: 5, reference: 'PO-2026-018', reason: 'purchase', notes: 'Tennis rackets stock', created_at: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000).toISOString(), user_id: adminUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'SPRT-004')?.id, transaction_type: 'out', quantity: 1, previous_stock: 5, new_stock: 4, reference: 'SO-2026-016', reason: 'sale', notes: 'Racket sale', created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), user_id: staffUser?.id },
+                { id: this.generateId(), product_id: products_list.find(p => p.product_code === 'ELEC-010')?.id, transaction_type: 'in', quantity: 15, previous_stock: 0, new_stock: 15, reference: 'PO-2026-019', reason: 'purchase', notes: 'Tablets received', created_at: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), user_id: managerUser?.id }
             ];
-            
+
             localStorage.setItem(DB_CONFIG.tables.stock_logs, JSON.stringify(defaultStockLogs));
         }
     }
@@ -312,7 +333,7 @@ class ClientDatabase {
         if (!tableName) {
             throw new Error(`Table '${table}' not found`);
         }
-        
+
         const data = localStorage.getItem(tableName);
         return data ? JSON.parse(data) : [];
     }
@@ -371,15 +392,15 @@ class ClientDatabase {
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString()
         };
-        
+
         records.push(newRecord);
-        
+
         const tableName = DB_CONFIG.tables[table];
         localStorage.setItem(tableName, JSON.stringify(records));
-        
+
         // Log activity
         this.logActivity('INSERT', table, newRecord.id);
-        
+
         return newRecord.id;
     }
 
@@ -393,23 +414,23 @@ class ClientDatabase {
     update(table, id, data) {
         const records = this.getAll(table);
         const index = records.findIndex(record => record.id === id);
-        
+
         if (index === -1) {
             return false;
         }
-        
+
         records[index] = {
             ...records[index],
             ...data,
             updated_at: new Date().toISOString()
         };
-        
+
         const tableName = DB_CONFIG.tables[table];
         localStorage.setItem(tableName, JSON.stringify(records));
-        
+
         // Log activity
         this.logActivity('UPDATE', table, id);
-        
+
         return true;
     }
 
@@ -422,19 +443,19 @@ class ClientDatabase {
     delete(table, id) {
         const records = this.getAll(table);
         const index = records.findIndex(record => record.id === id);
-        
+
         if (index === -1) {
             return false;
         }
-        
+
         records.splice(index, 1);
-        
+
         const tableName = DB_CONFIG.tables[table];
         localStorage.setItem(tableName, JSON.stringify(records));
-        
+
         // Log activity
         this.logActivity('DELETE', table, id);
-        
+
         return true;
     }
 
@@ -460,7 +481,7 @@ class ClientDatabase {
     logActivity(action, table, recordId = null) {
         try {
             const currentUser = JSON.parse(localStorage.getItem('stockwise_current_user') || '{}');
-            
+
             const logEntry = {
                 id: this.generateId(),
                 action: action,
@@ -472,15 +493,15 @@ class ClientDatabase {
                 user_agent: navigator.userAgent,
                 timestamp: new Date().toISOString()
             };
-            
+
             const logs = this.getAll('activity_logs');
             logs.push(logEntry);
-            
+
             // Keep only last 1000 logs
             if (logs.length > 1000) {
                 logs.splice(0, logs.length - 1000);
             }
-            
+
             localStorage.setItem(DB_CONFIG.tables.activity_logs, JSON.stringify(logs));
         } catch (error) {
             // Silently fail if logging fails
@@ -522,85 +543,18 @@ class ClientDatabase {
     }
 }
 
-// ===== AUTHENTICATION HELPERS =====
-
-/**
- * Authenticate user with username and password
- * @param {string} username Username
- * @param {string} password Password
- * @returns {Object|null} User object if authenticated, null otherwise
- */
-function authenticateUser(username, password) {
-    const user = db.findOne('users', { username: username, status: 'active' });
-    
-    if (user && db.verifyPassword(password, user.password)) {
-        // Update last login
-        db.update('users', user.id, { last_login: new Date().toISOString() });
-        
-        // Create session data (exclude password)
-        const sessionUser = {
-            id: user.id,
-            username: user.username,
-            email: user.email,
-            full_name: user.full_name,
-            role: user.role,
-            loginTime: new Date().toISOString()
-        };
-        
-        // Store current user
-        localStorage.setItem('stockwise_current_user', JSON.stringify(sessionUser));
-        
-        return sessionUser;
-    }
-    
-    return null;
-}
-
-/**
- * Get current logged-in user
- * @returns {Object|null} Current user or null
- */
-function getCurrentUser() {
-    const userData = localStorage.getItem('stockwise_current_user');
-    return userData ? JSON.parse(userData) : null;
-}
-
-/**
- * Logout current user
- */
-function logoutUser() {
-    localStorage.removeItem('stockwise_current_user');
-    db.logActivity('LOGOUT', 'users');
-}
-
-/**
- * Check if user is authenticated
- * @returns {boolean} True if user is logged in
- */
-function isAuthenticated() {
-    return getCurrentUser() !== null;
-}
-
-/**
- * Check if user has specific role
- * @param {string} role Role to check
- * @returns {boolean} True if user has the role
- */
-function hasRole(role) {
-    const user = getCurrentUser();
-    return user && user.role === role;
-}
-
 // ===== INITIALIZE DATABASE =====
 const db = new ClientDatabase();
 
 // ===== EXPORT FOR GLOBAL USE =====
 window.StockWiseDB = {
     db,
-    authenticateUser,
-    getCurrentUser,
-    logoutUser,
-    isAuthenticated,
-    hasRole,
-    DB_CONFIG
+    DB_CONFIG,
+    auth: {
+        hashPassword: (pwd) => db.hashPassword(pwd),
+        validatePassword: (pwd, hash) => db.verifyPassword(pwd, hash)
+    },
+    activity: {
+        log: (action, details) => db.logActivity(action, 'system', null)
+    }
 };
