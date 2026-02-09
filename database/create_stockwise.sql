@@ -282,7 +282,8 @@ SELECT
 FROM stockwise_products p
 WHERE p.status = 'active'
 GROUP BY p.category;
-
+INSERT INTO stockwise_products (id, product_name, product_code, category, supplier_id, unit_price, current_stock, minimum_stock, unit, status, created_at) VALUES
+('prod_test_001', 'Test Product', 'TEST-001', 'Electronics', 'sup_tech_001', 999.00, 10, 5, 'piece', 'active', '2026-02-10 00:15:00');
 -- ========================================
 -- Database Statistics
 -- ========================================
