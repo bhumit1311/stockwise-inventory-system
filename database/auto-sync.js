@@ -14,19 +14,30 @@ console.log('-----------------------------------');
 function syncDatabase() {
     console.log(`\n⏰ ${new Date().toLocaleTimeString()} - Change detected!`);
     console.log('🔄 Syncing database...');
+    console.log('🗑️  Clearing old data...');
 
-    const command = `Get-Content "${SQL_FILE}" | sqlite3 "${DB_FILE}"`;
+    // First, drop all tables to avoid UNIQUE constraint errors
+    const dropCommand = `sqlite3 "${DB_FILE}" "DROP TABLE IF EXISTS stockwise_activity_logs; DROP TABLE IF EXISTS stockwise_stock_logs; DROP TABLE IF EXISTS stockwise_products; DROP TABLE IF EXISTS stockwise_suppliers; DROP TABLE IF EXISTS stockwise_categories; DROP TABLE IF EXISTS stockwise_users; DROP VIEW IF EXISTS v_low_stock_products; DROP VIEW IF EXISTS v_recent_stock_movements; DROP VIEW IF EXISTS v_inventory_summary;"`;
 
-    exec(command, { shell: 'powershell.exe' }, (error, stdout, stderr) => {
-        if (error) {
-            console.error('❌ Sync failed:', error.message);
-            return;
+    exec(dropCommand, { shell: 'powershell.exe' }, (dropError) => {
+        if (dropError) {
+            console.error('⚠️  Warning during cleanup:', dropError.message);
         }
-        if (stderr) {
-            console.error('⚠️  Warning:', stderr);
-            return;
-        }
-        console.log('✅ Database synced successfully!');
+
+        // Then import the SQL file
+        const command = `Get-Content "${SQL_FILE}" | sqlite3 "${DB_FILE}"`;
+
+        exec(command, { shell: 'powershell.exe' }, (error, stdout, stderr) => {
+            if (error) {
+                console.error('❌ Sync failed:', error.message);
+                return;
+            }
+            if (stderr) {
+                console.error('⚠️  Warning:', stderr);
+                return;
+            }
+            console.log('✅ Database synced successfully!');
+        });
     });
 }
 
