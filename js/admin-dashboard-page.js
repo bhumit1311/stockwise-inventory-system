@@ -102,18 +102,26 @@ function animateProgress(elementId, targetPercentage) {
 }
 
 function loadRecentActivity() {
-    const activities = StockWiseDB.db.getAll('activity_logs')
-        .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
-        .slice(0, 10);
+    try {
+        const activities = StockWiseDB.db.getAll('activity_logs')
+            .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+            .slice(0, 10);
 
-    const container = document.getElementById('recentActivity');
+        const container = document.getElementById('recentActivity');
 
-    if (activities.length === 0) {
-        container.innerHTML = '<p class="text-muted">No recent activity</p>';
-        return;
-    }
+        if (!container) {
+            console.error('Recent activity container not found');
+            return;
+        }
 
-    container.innerHTML = activities.map(activity => `
+        console.log(`Loading ${activities.length} recent activities`);
+
+        if (activities.length === 0) {
+            container.innerHTML = '<p class="text-muted">No recent activity</p>';
+            return;
+        }
+
+        container.innerHTML = activities.map(activity => `
                 <div class="activity-item d-flex align-items-center mb-3">
                     <div class="activity-icon me-3">
                         <i class="fas fa-${getActivityIcon(activity.action)} text-primary"></i>
@@ -126,25 +134,47 @@ function loadRecentActivity() {
                     </div>
                 </div>
             `).join('');
+    } catch (error) {
+        console.error('Error loading recent activity:', error);
+        const container = document.getElementById('recentActivity');
+        if (container) {
+            container.innerHTML = '<p class="text-danger">Error loading activity data</p>';
+        }
+    }
 }
 
 function loadLowStockAlerts() {
-    const products = StockWiseDB.db.getAll('products');
-    const lowStockItems = products.filter(p => p.current_stock <= p.minimum_stock);
+    try {
+        const products = StockWiseDB.db.getAll('products');
+        const lowStockItems = products.filter(p => p.current_stock <= p.minimum_stock);
 
-    const container = document.getElementById('lowStockAlerts');
+        const container = document.getElementById('lowStockAlerts');
 
-    if (lowStockItems.length === 0) {
-        container.innerHTML = '<div class="alert alert-success">All products are well stocked!</div>';
-        return;
-    }
+        if (!container) {
+            console.error('Low stock alerts container not found');
+            return;
+        }
 
-    container.innerHTML = lowStockItems.map(product => `
+        console.log(`Found ${lowStockItems.length} low stock items out of ${products.length} total products`);
+
+        if (lowStockItems.length === 0) {
+            container.innerHTML = '<div class="alert alert-success">All products are well stocked!</div>';
+            return;
+        }
+
+        container.innerHTML = lowStockItems.map(product => `
                 <div class="alert alert-warning mb-2">
                     <strong>${product.product_name}</strong><br>
                     <small>Stock: ${product.current_stock} / Min: ${product.minimum_stock}</small>
                 </div>
             `).join('');
+    } catch (error) {
+        console.error('Error loading low stock alerts:', error);
+        const container = document.getElementById('lowStockAlerts');
+        if (container) {
+            container.innerHTML = '<div class="alert alert-danger">Error loading stock alerts</div>';
+        }
+    }
 }
 
 function getActivityIcon(action) {
@@ -159,14 +189,20 @@ function getActivityIcon(action) {
 }
 
 function getActivityText(activity) {
-    const actions = {
-        'INSERT': `added a new ${activity.table_name.replace('_', ' ')}`,
-        'UPDATE': `updated a ${activity.table_name.replace('_', ' ')}`,
-        'DELETE': `deleted a ${activity.table_name.replace('_', ' ')}`,
-        'LOGIN': 'logged in',
-        'LOGOUT': 'logged out'
-    };
-    return actions[activity.action] || `performed ${activity.action}`;
+    switch (activity.action) {
+        case 'INSERT':
+            return `added a new ${activity.table_name ? activity.table_name.replace(/_/g, ' ') : 'item'}`;
+        case 'UPDATE':
+            return `updated a ${activity.table_name ? activity.table_name.replace(/_/g, ' ') : 'item'}`;
+        case 'DELETE':
+            return `deleted a ${activity.table_name ? activity.table_name.replace(/_/g, ' ') : 'item'}`;
+        case 'LOGIN':
+            return 'logged in';
+        case 'LOGOUT':
+            return 'logged out';
+        default:
+            return `performed ${activity.action}`;
+    }
 }
 
 function formatDate(dateString) {

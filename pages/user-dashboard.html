@@ -49,15 +49,6 @@
                             <i class="fas fa-user me-1"></i><span id="currentUsername">User</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="profile.html">
-                                    <i class="fas fa-user-cog me-2"></i>Profile
-                                </a></li>
-                            <li><a class="dropdown-item" href="settings.html">
-                                    <i class="fas fa-cog me-2"></i>Settings
-                                </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">
                                     <i class="fas fa-sign-out-alt me-2"></i>Logout
                                 </a></li>
@@ -179,10 +170,42 @@
             </div>
         </div>
 
-        <!-- Product Overview & Low Stock Alerts -->
-        <div class="row">
+        <!-- Recent Activity & Low Stock Alerts -->
+        <div class="row mb-4">
             <div class="col-lg-8 mb-4">
                 <div class="card h-100">
+                    <div class="card-header bg-gradient-dark text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-history me-2"></i>Recent Activity
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="recentActivity" class="activity-list">
+                            <!-- Activity items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-header bg-gradient-dark text-white">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Stock Alerts
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="stockAlerts" class="alert-list">
+                            <!-- Stock alerts will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Overview -->
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card">
                     <div class="card-header bg-gradient-dark text-white">
                         <h5 class="card-title mb-0">
                             <i class="fas fa-boxes me-2"></i>Product Overview
@@ -203,20 +226,6 @@
                                     <!-- Product data will be loaded here -->
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-header bg-gradient-dark text-white">
-                        <h5 class="card-title mb-0">
-                            <i class="fas fa-exclamation-triangle me-2"></i>Stock Alerts
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="stockAlerts" class="alert-list">
-                            <!-- Stock alerts will be loaded here -->
                         </div>
                     </div>
                 </div>
@@ -276,6 +285,25 @@
         .table th {
             border-top: none;
             font-weight: 600;
+        }
+
+        .activity-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </body>

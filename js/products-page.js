@@ -40,30 +40,38 @@ function goToDashboard() {
 
 function setupEventListeners() {
     // Search input
-    document.getElementById('searchInput').addEventListener('input', filterProducts);
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', filterProducts);
+    }
 
     // Filter dropdowns
-    document.getElementById('categoryFilter').addEventListener('change', filterProducts);
-    document.getElementById('stockFilter').addEventListener('change', filterProducts);
-    document.getElementById('supplierFilter').addEventListener('change', filterProducts);
-    document.getElementById('unitFilter').addEventListener('change', filterProducts);
-    document.getElementById('sortBy').addEventListener('change', filterProducts);
-    document.getElementById('sortOrder').addEventListener('change', filterProducts);
+    const categoryFilter = document.getElementById('categoryFilter');
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', filterProducts);
+    }
 
-    // Advanced filter inputs
-    document.getElementById('minPrice').addEventListener('input', debounce(filterProducts, 500));
-    document.getElementById('maxPrice').addEventListener('input', debounce(filterProducts, 500));
-    document.getElementById('minStock').addEventListener('input', debounce(filterProducts, 500));
-    document.getElementById('maxStock').addEventListener('input', debounce(filterProducts, 500));
+    const stockFilter = document.getElementById('stockFilter');
+    if (stockFilter) {
+        stockFilter.addEventListener('change', filterProducts);
+    }
+
+    const supplierFilter = document.getElementById('supplierFilter');
+    if (supplierFilter) {
+        supplierFilter.addEventListener('change', filterProducts);
+    }
 
     // Logout button
-    document.getElementById('logoutBtn').addEventListener('click', function (e) {
-        e.preventDefault();
-        if (confirm('Are you sure you want to logout?')) {
-            AuthManager.clearSession('User logout');
-            window.location.href = '../index.html';
-        }
-    });
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                AuthManager.clearSession('User logout');
+                window.location.href = '../index.html';
+            }
+        });
+    }
 }
 
 // Debounce function to limit API calls
@@ -179,17 +187,21 @@ function getStockStatus(product) {
 }
 
 function filterProducts() {
-    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    const categoryFilter = document.getElementById('categoryFilter').value;
-    const stockFilter = document.getElementById('stockFilter').value;
-    const supplierFilter = document.getElementById('supplierFilter').value;
-    const unitFilter = document.getElementById('unitFilter').value;
-    const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
-    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
-    const minStock = parseInt(document.getElementById('minStock').value) || 0;
-    const maxStock = parseInt(document.getElementById('maxStock').value) || Infinity;
-    const sortBy = document.getElementById('sortBy').value;
-    const sortOrder = document.getElementById('sortOrder').value;
+    const searchInput = document.getElementById('searchInput');
+    const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+
+    const categorySelect = document.getElementById('categoryFilter');
+    const categoryFilter = categorySelect ? categorySelect.value : '';
+
+    const stockSelect = document.getElementById('stockFilter');
+    const stockFilter = stockSelect ? stockSelect.value : '';
+
+    const supplierSelect = document.getElementById('supplierFilter');
+    const supplierFilter = supplierSelect ? supplierSelect.value : '';
+
+    // Default sort values since controls are missing
+    const sortBy = 'product_name';
+    const sortOrder = 'asc';
 
     let filteredProducts = currentProducts.filter(product => {
         // Search filter - check name, code, and description
@@ -211,17 +223,7 @@ function filterProducts() {
         // Supplier filter
         const matchesSupplier = !supplierFilter || product.supplier_id === supplierFilter;
 
-        // Unit filter
-        const matchesUnit = !unitFilter || product.unit === unitFilter;
-
-        // Price range filter
-        const matchesPrice = product.unit_price >= minPrice && product.unit_price <= maxPrice;
-
-        // Stock range filter
-        const matchesStockRange = product.current_stock >= minStock && product.current_stock <= maxStock;
-
-        return matchesSearch && matchesCategory && matchesStock &&
-            matchesSupplier && matchesUnit && matchesPrice && matchesStockRange;
+        return matchesSearch && matchesCategory && matchesStock && matchesSupplier;
     });
 
     // Apply sorting
@@ -255,17 +257,17 @@ function clearSearch() {
 
 function clearFilters() {
     // Clear all filter inputs
-    document.getElementById('searchInput').value = '';
-    document.getElementById('categoryFilter').value = '';
-    document.getElementById('stockFilter').value = '';
-    document.getElementById('supplierFilter').value = '';
-    document.getElementById('unitFilter').value = '';
-    document.getElementById('minPrice').value = '';
-    document.getElementById('maxPrice').value = '';
-    document.getElementById('minStock').value = '';
-    document.getElementById('maxStock').value = '';
-    document.getElementById('sortBy').value = 'product_name';
-    document.getElementById('sortOrder').value = 'asc';
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+
+    const categorySelect = document.getElementById('categoryFilter');
+    if (categorySelect) categorySelect.value = '';
+
+    const stockSelect = document.getElementById('stockFilter');
+    if (stockSelect) stockSelect.value = '';
+
+    const supplierSelect = document.getElementById('supplierFilter');
+    if (supplierSelect) supplierSelect.value = '';
 
     // Reset and display all products
     displayProducts(currentProducts);

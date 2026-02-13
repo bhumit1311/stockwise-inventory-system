@@ -54,15 +54,6 @@
                             <i class="fas fa-user me-1"></i><span id="currentUsername">User</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="profile.html">
-                                    <i class="fas fa-user-cog me-2"></i>Profile
-                                </a></li>
-                            <li><a class="dropdown-item" href="settings.html">
-                                    <i class="fas fa-cog me-2"></i>Settings
-                                </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
                             <li><a class="dropdown-item" href="#" id="logoutBtn">
                                     <i class="fas fa-sign-out-alt me-2"></i>Logout
                                 </a></li>
@@ -98,9 +89,8 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h6 class="mb-0"><i class="fas fa-filter me-2"></i>Search & Filters</h6>
-                            <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#advancedFilters">
-                                <i class="fas fa-cog me-1"></i>Advanced
+                            <button class="btn btn-sm btn-outline-success" onclick="exportSuppliers()">
+                                <i class="fas fa-download me-1"></i>Export CSV
                             </button>
                         </div>
                     </div>
@@ -143,58 +133,6 @@
                                     <button class="btn btn-outline-secondary" onclick="clearFilters()">
                                         <i class="fas fa-times me-1"></i>Clear All
                                     </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Advanced Filters (Collapsible) -->
-                        <div class="collapse mt-3" id="advancedFilters">
-                            <hr>
-                            <div class="row g-3">
-                                <div class="col-md-3">
-                                    <label class="form-label">Has Products</label>
-                                    <select class="form-select form-select-sm" id="hasProductsFilter">
-                                        <option value="">All Suppliers</option>
-                                        <option value="yes">With Products</option>
-                                        <option value="no">Without Products</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <label class="form-label">Registration Date</label>
-                                    <div class="row g-1">
-                                        <div class="col-6">
-                                            <input type="date" class="form-control form-control-sm" id="startDate">
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="date" class="form-control form-control-sm" id="endDate">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label">Sort By</label>
-                                    <select class="form-select form-select-sm" id="sortBy">
-                                        <option value="supplier_name">Name</option>
-                                        <option value="contact_person">Contact Person</option>
-                                        <option value="email">Email</option>
-                                        <option value="city">City</option>
-                                        <option value="country">Country</option>
-                                        <option value="created_at">Date Added</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label">Order</label>
-                                    <select class="form-select form-select-sm" id="sortOrder">
-                                        <option value="asc">Ascending</option>
-                                        <option value="desc">Descending</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <label class="form-label">Export</label>
-                                    <div class="d-grid">
-                                        <button class="btn btn-outline-success btn-sm" onclick="exportSuppliers()">
-                                            <i class="fas fa-download me-1"></i>CSV
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>

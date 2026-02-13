@@ -41,6 +41,7 @@ function loadDashboardData() {
 
     // Load statistics
     loadStatistics();
+    loadRecentActivity();
     loadProductOverview();
     loadStockAlerts();
     loadCategoriesOverview();
@@ -147,6 +148,91 @@ function loadCategoriesOverview() {
                     </div>
                 `;
     }).join('');
+}
+
+function loadRecentActivity() {
+    try {
+        const activities = StockWiseDB.db.getAll('activity_logs')
+            .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+            .slice(0, 10);
+
+        const container = document.getElementById('recentActivity');
+
+        if (!container) {
+            console.error('Recent activity container not found');
+            return;
+        }
+
+        console.log(`Loading ${activities.length} recent activities`);
+
+        if (activities.length === 0) {
+            container.innerHTML = '<p class="text-muted">No recent activity</p>';
+            return;
+        }
+
+        container.innerHTML = activities.map(activity => `
+                <div class="activity-item d-flex align-items-center mb-3">
+                    <div class="activity-icon me-3">
+                        <i class="fas fa-${getActivityIcon(activity.action)} text-primary"></i>
+                    </div>
+                    <div class="activity-content flex-grow-1">
+                        <div class="activity-text">
+                            <strong>${activity.username}</strong> ${getActivityText(activity)}
+                        </div>
+                        <small class="text-muted">${formatDate(activity.timestamp)}</small>
+                    </div>
+                </div>
+            `).join('');
+    } catch (error) {
+        console.error('Error loading recent activity:', error);
+        const container = document.getElementById('recentActivity');
+        if (container) {
+            container.innerHTML = '<p class="text-danger">Error loading activity data</p>';
+        }
+    }
+}
+
+function getActivityIcon(action) {
+    const icons = {
+        'INSERT': 'plus',
+        'UPDATE': 'edit',
+        'DELETE': 'trash',
+        'LOGIN': 'sign-in-alt',
+        'LOGOUT': 'sign-out-alt'
+    };
+    return icons[action] || 'info';
+}
+
+function getActivityText(activity) {
+    switch (activity.action) {
+        case 'INSERT':
+            return `added a new ${activity.table_name ? activity.table_name.replace(/_/g, ' ') : 'item'}`;
+        case 'UPDATE':
+            return `updated a ${activity.table_name ? activity.table_name.replace(/_/g, ' ') : 'item'}`;
+        case 'DELETE':
+            return `deleted a ${activity.table_name ? activity.table_name.replace(/_/g, ' ') : 'item'}`;
+        case 'LOGIN':
+            return 'logged in';
+        case 'LOGOUT':
+            return 'logged out';
+        default:
+            return `performed ${activity.action}`;
+    }
+}
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diff = now - date;
+    const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(diff / 86400000);
+
+    if (minutes < 1) return 'Just now';
+    if (minutes < 60) return `${minutes} minutes ago`;
+    if (hours < 24) return `${hours} hours ago`;
+    if (days < 7) return `${days} days ago`;
+    return date.toLocaleDateString();
 }
 
 function getStockStatus(product) {

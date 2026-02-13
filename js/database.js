@@ -286,6 +286,57 @@ class ClientDatabase {
 
             localStorage.setItem(DB_CONFIG.tables.stock_logs, JSON.stringify(defaultStockLogs));
         }
+
+        // Initialize activity logs if empty
+        const activityLogs = this.getAll('activity_logs');
+        if (activityLogs.length === 0) {
+            const users_list = this.getAll('users');
+            const adminUser = users_list.find(u => u.role === 'admin');
+            const staffUser = users_list.find(u => u.role === 'staff');
+            const managerUser = users_list.find(u => u.role === 'user' && u.username === 'manager');
+
+            const defaultActivityLogs = [
+                // Recent product activities
+                { id: this.generateId(), action: 'INSERT', table_name: 'products', record_id: null, user_id: adminUser?.id, username: adminUser?.username || 'admin', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'UPDATE', table_name: 'products', record_id: null, user_id: managerUser?.id, username: managerUser?.username || 'manager', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'INSERT', table_name: 'stock_logs', record_id: null, user_id: staffUser?.id, username: staffUser?.username || 'staff', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString() },
+
+                // Supplier activities
+                { id: this.generateId(), action: 'UPDATE', table_name: 'suppliers', record_id: null, user_id: adminUser?.id, username: adminUser?.username || 'admin', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'INSERT', table_name: 'suppliers', record_id: null, user_id: managerUser?.id, username: managerUser?.username || 'manager', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString() },
+
+                // Stock movement activities
+                { id: this.generateId(), action: 'INSERT', table_name: 'stock_logs', record_id: null, user_id: staffUser?.id, username: staffUser?.username || 'staff', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 18 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'INSERT', table_name: 'stock_logs', record_id: null, user_id: adminUser?.id, username: adminUser?.username || 'admin', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString() },
+
+                // User management activities
+                { id: this.generateId(), action: 'UPDATE', table_name: 'users', record_id: null, user_id: adminUser?.id, username: adminUser?.username || 'admin', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 30 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'INSERT', table_name: 'products', record_id: null, user_id: managerUser?.id, username: managerUser?.username || 'manager', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 36 * 60 * 60 * 1000).toISOString() },
+
+                // More product updates
+                { id: this.generateId(), action: 'UPDATE', table_name: 'products', record_id: null, user_id: staffUser?.id, username: staffUser?.username || 'staff', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 42 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'INSERT', table_name: 'stock_logs', record_id: null, user_id: adminUser?.id, username: adminUser?.username || 'admin', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 48 * 60 * 60 * 1000).toISOString() },
+
+                // Category activities
+                { id: this.generateId(), action: 'UPDATE', table_name: 'categories', record_id: null, user_id: managerUser?.id, username: managerUser?.username || 'manager', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 54 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'INSERT', table_name: 'products', record_id: null, user_id: staffUser?.id, username: staffUser?.username || 'staff', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 60 * 60 * 60 * 1000).toISOString() },
+
+                // Stock adjustments
+                { id: this.generateId(), action: 'INSERT', table_name: 'stock_logs', record_id: null, user_id: adminUser?.id, username: adminUser?.username || 'admin', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 66 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'UPDATE', table_name: 'products', record_id: null, user_id: managerUser?.id, username: managerUser?.username || 'manager', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString() },
+
+                // Supplier updates
+                { id: this.generateId(), action: 'UPDATE', table_name: 'suppliers', record_id: null, user_id: staffUser?.id, username: staffUser?.username || 'staff', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 78 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'INSERT', table_name: 'stock_logs', record_id: null, user_id: adminUser?.id, username: adminUser?.username || 'admin', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 84 * 60 * 60 * 1000).toISOString() },
+
+                // Product deletions and updates
+                { id: this.generateId(), action: 'DELETE', table_name: 'products', record_id: null, user_id: adminUser?.id, username: adminUser?.username || 'admin', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 90 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'UPDATE', table_name: 'products', record_id: null, user_id: managerUser?.id, username: managerUser?.username || 'manager', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 96 * 60 * 60 * 1000).toISOString() },
+                { id: this.generateId(), action: 'INSERT', table_name: 'products', record_id: null, user_id: staffUser?.id, username: staffUser?.username || 'staff', ip_address: 'client-side', user_agent: navigator.userAgent, timestamp: new Date(Date.now() - 102 * 60 * 60 * 1000).toISOString() }
+            ];
+
+            localStorage.setItem(DB_CONFIG.tables.activity_logs, JSON.stringify(defaultActivityLogs));
+        }
     }
 
     /**
