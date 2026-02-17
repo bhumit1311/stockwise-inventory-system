@@ -1,10 +1,12 @@
 # 📦 StockWise - Modern Inventory Management System
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
+![Status](https://img.shields.io/badge/status-production-success.svg)
 
-A professional, full-featured inventory management system built with modern web technologies. StockWise provides real-time tracking, comprehensive reporting, and role-based access control for efficient inventory management.
+A professional, production-ready inventory management system built with modern web technologies. StockWise provides real-time tracking, comprehensive reporting, and role-based access control for efficient inventory management.
+
+🔗 **Live Demo**: [View Live Site](https://bhumit1311.github.io/stockwise-inventory-system/)
 
 ---
 
@@ -14,21 +16,21 @@ A professional, full-featured inventory management system built with modern web 
 - ✅ **Real-time Inventory Tracking** - Monitor stock levels in real-time
 - ✅ **Product Management** - Add, edit, and manage products with ease
 - ✅ **Supplier Management** - Track and manage supplier relationships
-- ✅ **User Management** - Role-based access control (Admin, User, Staff)
+- ✅ **User Management** - Role-based access control (Admin & Staff)
 - ✅ **Stock Movement Tracking** - Complete audit trail of all stock changes
-- ✅ **Low Stock Alerts** - Automatic notifications for low inventory
+- ✅ **Low Stock Alerts** - Modal view with quick action buttons
 - ✅ **Comprehensive Reports** - Detailed analytics and reporting
 - ✅ **Responsive Design** - Works seamlessly on desktop, tablet, and mobile
 
 ### Advanced Features
-- 📊 **Analytics Dashboard** - Visual charts and statistics
+- 📊 **Analytics Dashboard** - Visual statistics and insights
 - 🔐 **Secure Authentication** - Session management with auto-expiry
 - 📱 **Mobile Optimized** - Touch-friendly interface for mobile devices
 - 🎨 **Modern UI/UX** - Clean, professional interface
 - 💾 **Data Export** - Export reports to CSV/JSON
 - 🔍 **Advanced Search** - Quick product and supplier lookup
-- 📈 **Trend Analysis** - Track inventory trends over time
-- ⚡ **Fast Performance** - Client-side data management for speed
+- ⚡ **Fast Performance** - Optimized client-side data management
+- 🎯 **Role-Based Permissions** - Granular access control
 
 ---
 
@@ -42,16 +44,14 @@ A professional, full-featured inventory management system built with modern web 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/stockwise.git
-   cd stockwise
+   git clone https://github.com/bhumit1311/stockwise-inventory-system.git
+   cd stockwise-inventory-system
    ```
 
 2. **Open in browser**
    ```bash
    # Simply open index.html in your browser
-   # Or use a local server:
-   python -m http.server 8000
-   # Then visit: http://localhost:8000
+   # Or visit the live site: https://bhumit1311.github.io/stockwise-inventory-system/
    ```
 
 3. **Login with demo credentials**
@@ -59,63 +59,59 @@ A professional, full-featured inventory management system built with modern web 
 
 ---
 
-## 👥 User Roles
+## 👥 User Roles & Permissions
 
 ### 🔴 Admin
 **Full system access**
-- Manage all products, suppliers, and users
-- View all reports and analytics
-- Access to system settings
-- Complete audit trail access
+- ✅ Manage all products, suppliers, and users
+- ✅ Full CRUD operations on all entities
+- ✅ View all reports and analytics
+- ✅ Access to low stock alerts modal
+- ✅ Complete audit trail access
 
 **Default Credentials:**
 - Username: `admin`
 - Password: `password123`
 
-### 🟢 Manager/User
-**Inventory management**
-- View and manage products
-- View stock movements
-- Generate reports
-- Limited user management
-
-**Default Credentials:**
-- Username: `manager`
-- Password: `password123`
-
 ### 🟡 Staff
-**Basic operations**
-- View products
-- Update stock levels
-- View basic reports
+**View-only with stock management**
+- ✅ **View** products and suppliers (read-only)
+- ✅ **Full access** to stock movements (Stock In/Out)
+- ✅ View basic reports
+- ✅ View low stock alerts
+- ❌ **Cannot** add/edit/delete products or suppliers
 
 **Default Credentials:**
 - Username: `staff`
 - Password: `password123`
+
+> **Note**: The manager role has been removed in v2.0. All manager accounts have been converted to staff role.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-stockwise/
+stockwise-inventory-system/
 ├── index.html                 # Landing page
 ├── README.md                  # This file
-├── TODO.md                    # Development tasks
 ├── .gitignore                 # Git ignore rules
+│
+├── assets/                    # Static assets
+│   └── logo.svg              # Application logo
 │
 ├── css/                       # Stylesheets
 │   ├── light-theme.css       # Main theme
 │   └── mobile-fixes.css      # Mobile responsiveness
 │
 ├── js/                        # JavaScript files
-│   ├── auth/
-│   │   └── authGuard.js      # Authentication guard
+│   ├── core/
+│   │   └── authManager.js    # Authentication & authorization
 │   ├── services/
 │   │   └── dataService.js    # Central data service
 │   ├── utils/
 │   │   └── uiUtils.js        # UI utilities
-│   ├── database.js           # Client-side database
+│   ├── database.js           # Client-side database (localStorage)
 │   ├── login-page.js         # Login functionality
 │   ├── register-page.js      # Registration
 │   ├── admin-dashboard-page.js
@@ -124,31 +120,18 @@ stockwise/
 │   ├── suppliers-page.js
 │   ├── users-page.js
 │   ├── reports-page.js
-│   ├── stock-movement-page.js
-│   ├── profile-page.js
-│   ├── settings-page.js
-│   └── dashboard-enhancements.js
+│   └── stock-movement-page.js
 │
-├── pages/                     # HTML pages
-│   ├── login.html
-│   ├── register.html
-│   ├── admin-dashboard.html
-│   ├── user-dashboard.html
-│   ├── products.html
-│   ├── suppliers.html
-│   ├── users.html
-│   ├── reports.html
-│   ├── stock-movement.html
-│   ├── profile.html
-│   └── settings.html
-│
-├── components/                # Reusable components
-│   └── navbar.html           # Navigation component
-│
-└── database/                  # Database documentation
-    ├── schema.md             # Database schema
-    ├── sample-data.json      # Sample data
-    └── connection.php        # (Legacy - not used)
+└── pages/                     # HTML pages
+    ├── login.html
+    ├── register.html
+    ├── admin-dashboard.html
+    ├── user-dashboard.html
+    ├── products.html
+    ├── suppliers.html
+    ├── users.html
+    ├── reports.html
+    └── stock-movement.html
 ```
 
 ---
@@ -161,7 +144,6 @@ stockwise/
 - **JavaScript (ES6+)** - Modern JavaScript features
 - **Bootstrap 5.3** - Responsive framework
 - **Font Awesome 6.0** - Icon library
-- **Chart.js 4.4** - Data visualization
 
 ### Data Management
 - **localStorage API** - Client-side data persistence
@@ -179,36 +161,45 @@ stockwise/
 ## 📊 Key Features Explained
 
 ### 1. Dashboard
-- Real-time statistics
-- Visual charts and graphs
+- Real-time statistics (products, suppliers, low stock count)
 - Recent activity feed
-- Low stock alerts
+- Low stock alerts with modal view
 - Quick action buttons
+- Role-based content display
 
 ### 2. Product Management
-- Add/Edit/Delete products
+- Add/Edit/Delete products (Admin only)
+- View products (All users)
 - Category organization
 - Stock level tracking
 - Supplier assignment
-- Bulk operations
+- Status management
 
 ### 3. Supplier Management
-- Supplier database
-- Contact information
+- Add/Edit/Delete suppliers (Admin only)
+- View suppliers (All users)
+- Contact information management
 - Product associations
 - Status tracking
 
-### 4. Reports & Analytics
+### 4. Stock Movement
+- Stock In/Out operations (All users)
+- Reason tracking (Purchase, Return, Sale)
+- Automatic stock level updates
+- Complete movement history
+- Audit trail
+
+### 5. Reports & Analytics
 - Inventory reports
 - Supplier reports
 - Low stock reports
 - Stock movement history
 - Export functionality
 
-### 5. User Management (Admin only)
+### 6. User Management (Admin only)
 - Create/Edit users
-- Role assignment
-- Access control
+- Role assignment (Admin/Staff)
+- Password management
 - Activity monitoring
 
 ---
@@ -219,21 +210,25 @@ stockwise/
    - Secure login system
    - Password hashing (client-side demo)
    - Session management
+   - Auto logout after timeout
 
 2. **Authorization**
    - Role-based access control
    - Route protection
-   - Permission checking
+   - Permission checking on all operations
+   - UI element visibility based on roles
 
 3. **Session Management**
    - Auto-expiry after 1 hour
    - Remember me functionality
    - Secure logout
+   - Session validation on each page
 
 4. **Audit Trail**
    - Activity logging
    - User action tracking
    - Timestamp recording
+   - Complete history
 
 ---
 
@@ -250,62 +245,64 @@ StockWise is fully responsive and optimized for:
 - Responsive navigation
 - Optimized layouts
 - Fast performance
-- Offline capability
 
 ---
 
-## 🎨 Customization
+## 🆕 Recent Updates (v2.0)
 
-### Themes
-The system uses CSS custom properties for easy theming:
+### Production Cleanup
+- ✅ Removed unused database folder (~25MB)
+- ✅ Removed service worker (sw.js) and PWA manifest
+- ✅ Removed unused enhancement features
+- ✅ Cleaned all console.log statements
+- ✅ Optimized project structure
 
-```css
-:root {
-    --bg-primary: #fdfcf9;
-    --accent-primary: #5fb89a;
-    --text-primary: #2d3436;
-    /* ... more variables */
-}
-```
+### Role Changes
+- ✅ Removed manager role completely
+- ✅ Simplified to Admin & Staff roles only
+- ✅ Staff now have view-only access to products/suppliers
+- ✅ Staff retain full stock management capabilities
 
-### Adding New Features
-1. Create new page in `pages/`
-2. Create corresponding JS file in `js/`
-3. Add route to navigation
-4. Update permissions in `authGuard.js`
+### New Features
+- ✅ Low Stock Alerts Modal with quick actions
+- ✅ Stock Movement added to admin navigation
+- ✅ Simplified stock movement reasons
+- ✅ Improved About section
+- ✅ Enhanced user experience
+
+---
+
+## 🎯 Demo Credentials
+
+| Role | Username | Password | Permissions |
+|------|----------|----------|-------------|
+| Admin | `admin` | `password123` | Full Access - All CRUD operations |
+| Staff | `staff` | `password123` | View products/suppliers, Manage stock |
+
+---
+
+## 🐛 Known Limitations
+
+1. **Browser Storage Limit** - localStorage has ~5-10MB limit
+2. **No Real-time Sync** - Data is local to each browser
+3. **Demo Environment** - Use proper server-side authentication in production
+4. **Single Device** - Data doesn't sync across devices
 
 ---
 
 ## 📈 Future Enhancements
 
 ### Planned Features
-- [ ] Backend integration (Node.js/PHP)
+- [ ] Backend integration (Node.js/Express)
 - [ ] Real database (MySQL/PostgreSQL)
+- [ ] Multi-device sync
 - [ ] Barcode scanning
 - [ ] Email notifications
 - [ ] Multi-warehouse support
-- [ ] Advanced analytics
+- [ ] Advanced analytics with charts
 - [ ] API integration
-- [ ] Mobile app (React Native)
 - [ ] Print labels
 - [ ] Batch operations
-
-### Backend Integration Roadmap
-1. Set up Node.js/Express server
-2. Implement MySQL database
-3. Create REST API endpoints
-4. Add JWT authentication
-5. Implement file uploads
-6. Add email service
-7. Deploy to cloud
-
----
-
-## 🐛 Known Issues
-
-1. **Browser Storage Limit** - localStorage has ~5-10MB limit
-2. **No Real-time Sync** - Data is local to each browser
-3. **Demo Password Hashing** - Use proper server-side hashing in production
 
 ---
 
@@ -323,34 +320,19 @@ Contributions are welcome! Please follow these steps:
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 Author
-
-**StockWise Team**
-- Website: [stockwise.com](https://stockwise.com)
-- Email: support@stockwise.com
-
----
-
-## 🙏 Acknowledgments
-
-- Bootstrap team for the amazing framework
-- Font Awesome for the icon library
-- Chart.js for data visualization
-- All contributors and testers
-
----
-
-## 📞 Support
-
-For support, email support@stockwise.com or open an issue on GitHub.
+This project is licensed under the MIT License.
 
 ---
 
 ## 🔄 Version History
+
+### v2.0.0 (2026-02-17)
+- 🧹 Production cleanup - removed unused files and code
+- 🔄 Role simplification - removed manager role
+- ✨ New low stock alerts modal
+- ⚡ Performance optimizations
+- 📱 Mobile improvements
+- 🎨 UI/UX enhancements
 
 ### v1.0.0 (2026-01-29)
 - ✨ Initial release
@@ -358,17 +340,12 @@ For support, email support@stockwise.com or open an issue on GitHub.
 - ✅ User authentication
 - ✅ Reports and analytics
 - ✅ Mobile responsive design
-- ✅ Complete documentation
 
 ---
 
-## 🎯 Demo Credentials
+## 📞 Support
 
-| Role | Username | Password | Access Level |
-|------|----------|----------|--------------|
-| Admin | `admin` | `password123` | Full Access |
-| Manager | `manager` | `password123` | Inventory Management |
-| Staff | `staff` | `password123` | Basic Operations |
+For issues or questions, please open an issue on GitHub.
 
 ---
 
@@ -376,4 +353,4 @@ For support, email support@stockwise.com or open an issue on GitHub.
 
 ---
 
-Made with ❤️ by the StockWise Team
+Made with ❤️ for efficient inventory management
