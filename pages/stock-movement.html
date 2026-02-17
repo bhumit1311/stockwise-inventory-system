@@ -88,13 +88,6 @@
                             onclick="openStockModal('out')">
                             <i class="fas fa-minus me-2"></i>Stock Out
                         </button>
-                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#stockModal"
-                            onclick="openStockModal('adjustment')">
-                            <i class="fas fa-edit me-2"></i>Adjustment
-                        </button>
-                        <button class="btn btn-danger" onclick="resetDatabase()" title="Reset Database">
-                            <i class="fas fa-sync me-2"></i>Reset Data
-                        </button>
                     </div>
                 </div>
             </div>
@@ -124,18 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-3">
-                <div class="card border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <div class="feature-icon bg-info mb-3">
-                            <i class="fas fa-edit text-white"></i>
-                        </div>
-                        <h4 class="card-title text-info" id="totalAdjustments">0</h4>
-                        <p class="card-text text-muted">Adjustments</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-3">
+            <div class="col-lg-4 col-md-6 mb-3">
                 <div class="card border-0 shadow-sm">
                     <div class="card-body text-center">
                         <div class="feature-icon bg-primary mb-3">
@@ -168,7 +150,6 @@
                                     <option value="">All Types</option>
                                     <option value="in">Stock In</option>
                                     <option value="out">Stock Out</option>
-                                    <option value="adjustment">Adjustment</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -291,11 +272,7 @@
                                     <option value="purchase">Purchase</option>
                                     <option value="return">Return</option>
                                     <option value="sale">Sale</option>
-                                    <option value="damage">Damage</option>
-                                    <option value="expired">Expired</option>
-                                    <option value="theft">Theft</option>
-                                    <option value="count_correction">Count Correction</option>
-                                    <option value="other">Other</option>
+                
                                 </select>
                             </div>
                             <div class="col-md-6" id="supplierField" style="display: none;">

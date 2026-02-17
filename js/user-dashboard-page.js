@@ -163,7 +163,6 @@ function loadRecentActivity() {
             return;
         }
 
-        console.log(`Loading ${activities.length} recent activities`);
 
         if (activities.length === 0) {
             container.innerHTML = '<p class="text-muted">No recent activity</p>';

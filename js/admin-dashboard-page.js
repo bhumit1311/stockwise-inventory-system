@@ -114,7 +114,6 @@ function loadRecentActivity() {
             return;
         }
 
-        console.log(`Loading ${activities.length} recent activities`);
 
         if (activities.length === 0) {
             container.innerHTML = '<p class="text-muted">No recent activity</p>';
@@ -155,7 +154,6 @@ function loadLowStockAlerts() {
             return;
         }
 
-        console.log(`Found ${lowStockItems.length} low stock items out of ${products.length} total products`);
 
         if (lowStockItems.length === 0) {
             container.innerHTML = '<div class="alert alert-success">All products are well stocked!</div>';
@@ -263,4 +261,62 @@ function addUser() {
 
 function generateReport() {
     window.location.href = 'reports.html';
+}
+
+// Load alerts modal with detailed information
+function loadAlertsModal() {
+    const products = StockWiseDB.db.getAll('products');
+    const lowStockItems = products.filter(p => p.current_stock <= p.minimum_stock);
+    const tbody = document.getElementById('alertsTableBody');
+    const noAlertsMessage = document.getElementById('noAlertsMessage');
+
+    if (lowStockItems.length === 0) {
+        tbody.innerHTML = '';
+        noAlertsMessage.style.display = 'block';
+        return;
+    }
+
+    noAlertsMessage.style.display = 'none';
+    tbody.innerHTML = lowStockItems.map(product => {
+        const supplier = StockWiseDB.db.getById('suppliers', product.supplier_id);
+        const stockPercentage = (product.current_stock / product.minimum_stock) * 100;
+        const urgencyClass = stockPercentage < 50 ? 'danger' : 'warning';
+
+        return `
+            <tr>
+                <td>
+                    <strong>${product.product_name}</strong><br>
+                    <small class="text-muted">${product.category}</small>
+                </td>
+                <td><code>${product.product_code}</code></td>
+                <td>
+                    <span class="badge bg-${urgencyClass}">${product.current_stock} ${product.unit}</span>
+                </td>
+                <td>${product.minimum_stock} ${product.unit}</td>
+                <td>${supplier ? supplier.supplier_name : '<span class="text-muted">No supplier</span>'}</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button class="btn btn-success" onclick="quickStockIn('${product.id}')" title="Quick Stock In">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button class="btn btn-primary" onclick="viewProductDetails('${product.id}')" title="View Details">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+// Quick stock in function (redirects to stock movement page)
+function quickStockIn(productId) {
+    sessionStorage.setItem('quickStockInProduct', productId);
+    window.location.href = 'stock-movement.html';
+}
+
+// View product details (redirects to products page)
+function viewProductDetails(productId) {
+    sessionStorage.setItem('viewProductId', productId);
+    window.location.href = 'products.html';
 }

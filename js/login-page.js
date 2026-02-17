@@ -224,8 +224,8 @@ function redirectToDashboard(role) {
         case 'admin':
             window.location.href = 'admin-dashboard.html';
             break;
-        case 'user':
         case 'staff':
+        case 'user':
         default:
             window.location.href = 'user-dashboard.html';
             break;

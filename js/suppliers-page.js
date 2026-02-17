@@ -21,6 +21,13 @@ function checkAuthentication() {
 
     document.getElementById('currentUsername').textContent = user.username;
 
+    // Hide add/edit/delete buttons for staff
+    if (user.role === 'staff') {
+        // Hide add supplier button
+        const addSupplierBtn = document.querySelector('[onclick="openAddSupplierModal()"]');
+        if (addSupplierBtn) addSupplierBtn.style.display = 'none';
+    }
+
     // Show admin-only navigation items
     if (user.role === 'admin') {
         document.getElementById('usersNavItem').style.display = 'block';
@@ -89,6 +96,8 @@ function displaySuppliers(suppliers) {
     tbody.innerHTML = suppliers.map(supplier => {
         const products = StockWiseDB.db.find('products', { supplier_id: supplier.id });
         const statusClass = supplier.status === 'active' ? 'bg-success' : 'bg-secondary';
+        const user = AuthManager.getCurrentUser();
+        const isStaff = user && user.role === 'staff';
 
         return `
                     <tr>
@@ -110,18 +119,22 @@ function displaySuppliers(suppliers) {
                         </td>
                         <td>
                             <div class="btn-group btn-group-sm">
+                                ${!isStaff ? `
                                 <button class="btn btn-outline-primary" onclick="editSupplier('${supplier.id}')" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </button>
+                                ` : ''}
                                 <button class="btn btn-outline-info" onclick="viewSupplier('${supplier.id}')" title="View">
                                     <i class="fas fa-eye"></i>
                                 </button>
                                 <button class="btn btn-outline-success" onclick="viewSupplierProducts('${supplier.id}')" title="View Products">
                                     <i class="fas fa-boxes"></i>
                                 </button>
+                                ${!isStaff ? `
                                 <button class="btn btn-outline-danger" onclick="deleteSupplier('${supplier.id}')" title="Delete">
                                     <i class="fas fa-trash"></i>
                                 </button>
+                                ` : ''}
                             </div>
                         </td>
                     </tr>

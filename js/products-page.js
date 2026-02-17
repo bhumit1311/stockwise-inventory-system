@@ -22,6 +22,13 @@ function checkAuthentication() {
 
     document.getElementById('currentUsername').textContent = user.username;
 
+    // Hide add/edit/delete buttons for staff
+    if (user.role === 'staff') {
+        // Hide add product button
+        const addProductBtn = document.querySelector('[onclick="openAddProductModal()"]');
+        if (addProductBtn) addProductBtn.style.display = 'none';
+    }
+
     // Show admin-only navigation items
     if (user.role === 'admin') {
         document.getElementById('usersNavItem').style.display = 'block';
@@ -142,6 +149,8 @@ function displayProducts(products) {
     tbody.innerHTML = products.map(product => {
         const supplier = StockWiseDB.db.getById('suppliers', product.supplier_id);
         const stockStatus = getStockStatus(product);
+        const user = AuthManager.getCurrentUser();
+        const isStaff = user && user.role === 'staff';
 
         return `
                     <tr>
@@ -160,15 +169,19 @@ function displayProducts(products) {
                         <td>${supplier ? supplier.supplier_name : '<span class="text-muted">No supplier</span>'}</td>
                         <td>
                             <div class="btn-group btn-group-sm">
+                                ${!isStaff ? `
                                 <button class="btn btn-outline-primary" onclick="editProduct('${product.id}')" title="Edit">
                                     <i class="fas fa-edit"></i>
                                 </button>
+                                ` : ''}
                                 <button class="btn btn-outline-info" onclick="viewProduct('${product.id}')" title="View">
                                     <i class="fas fa-eye"></i>
                                 </button>
+                                ${!isStaff ? `
                                 <button class="btn btn-outline-danger" onclick="deleteProduct('${product.id}')" title="Delete">
                                     <i class="fas fa-trash"></i>
                                 </button>
+                                ` : ''}
                             </div>
                         </td>
                     </tr>

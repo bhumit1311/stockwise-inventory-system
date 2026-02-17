@@ -107,12 +107,10 @@ function loadStatistics() {
 
     const stockIn = movements.filter(m => m.transaction_type === 'in').length;
     const stockOut = movements.filter(m => m.transaction_type === 'out').length;
-    const adjustments = movements.filter(m => m.transaction_type === 'adjustment').length;
     const todayTransactions = movements.filter(m => new Date(m.created_at).toDateString() === today).length;
 
     document.getElementById('totalStockIn').textContent = stockIn;
     document.getElementById('totalStockOut').textContent = stockOut;
-    document.getElementById('totalAdjustments').textContent = adjustments;
     document.getElementById('todayTransactions').textContent = todayTransactions;
 }
 
@@ -294,13 +292,6 @@ function openStockModal(type) {
             supplierField.style.display = 'none';
             document.getElementById('reason').required = true;
             break;
-        case 'adjustment':
-            title.innerHTML = '<i class="fas fa-edit me-2 text-info"></i>Stock Adjustment';
-            modal.querySelector('.modal-header').className = 'modal-header bg-info text-white';
-            reasonField.style.display = 'block';
-            supplierField.style.display = 'none';
-            document.getElementById('reason').required = true;
-            break;
     }
 
     // Generate reference number
@@ -348,9 +339,6 @@ function calculateNewStock() {
             break;
         case 'out':
             newStock -= quantity;
-            break;
-        case 'adjustment':
-            newStock = quantity; // For adjustments, quantity is the new total
             break;
     }
 
@@ -400,15 +388,12 @@ function saveStockMovement() {
         case 'out':
             newStock = previousStock - quantity;
             break;
-        case 'adjustment':
-            newStock = quantity; // For adjustments, quantity is the new total
-            break;
     }
 
     const movementData = {
         product_id: productId,
         transaction_type: currentTransactionType,
-        quantity: currentTransactionType === 'adjustment' ? Math.abs(newStock - previousStock) : quantity,
+        quantity: quantity,
         previous_stock: previousStock,
         new_stock: newStock,
         reference: document.getElementById('reference').value || generateReference(currentTransactionType),
@@ -512,9 +497,4 @@ function showAlert(message, type = 'info') {
     }, 5000);
 }
 
-function resetDatabase() {
-    if (confirm('This will clear all data and reload sample data. Are you sure?')) {
-        localStorage.clear();
-        location.reload();
-    }
-}
+

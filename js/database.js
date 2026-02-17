@@ -63,8 +63,8 @@ class ClientDatabase {
                     username: 'manager',
                     email: 'manager@stockwise.com',
                     password: this.hashPassword('password123'),
-                    full_name: 'Store Manager',
-                    role: 'user',
+                    full_name: 'Staff Manager',
+                    role: 'staff',
                     status: 'active',
                     created_at: new Date().toISOString(),
                     last_login: null
@@ -76,17 +76,6 @@ class ClientDatabase {
                     password: this.hashPassword('password123'),
                     full_name: 'Staff Member',
                     role: 'staff',
-                    status: 'active',
-                    created_at: new Date().toISOString(),
-                    last_login: null
-                },
-                {
-                    id: this.generateId(),
-                    username: 'user',
-                    email: 'user@stockwise.com',
-                    password: this.hashPassword('password123'),
-                    full_name: 'Regular User',
-                    role: 'user',
                     status: 'active',
                     created_at: new Date().toISOString(),
                     last_login: null
@@ -242,7 +231,7 @@ class ClientDatabase {
             const users_list = this.getAll('users');
             const adminUser = users_list.find(u => u.role === 'admin');
             const staffUser = users_list.find(u => u.role === 'staff');
-            const managerUser = users_list.find(u => u.role === 'user' && u.username === 'manager');
+            const managerUser = users_list.find(u => u.role === 'manager');
 
             const defaultStockLogs = [
                 // Recent stock movements
@@ -293,7 +282,7 @@ class ClientDatabase {
             const users_list = this.getAll('users');
             const adminUser = users_list.find(u => u.role === 'admin');
             const staffUser = users_list.find(u => u.role === 'staff');
-            const managerUser = users_list.find(u => u.role === 'user' && u.username === 'manager');
+            const managerUser = users_list.find(u => u.role === 'manager');
 
             const defaultActivityLogs = [
                 // Recent product activities
